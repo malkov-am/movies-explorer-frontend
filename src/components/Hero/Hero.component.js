@@ -1,14 +1,15 @@
-import React from 'react';
-import './hero.styles.scss';
-import heroLogoPath from '../../images/landing/hero-logo.svg';
+import React from "react";
+import "./Hero.styles.scss";
 
 const Hero = () => {
-    return (
-        <div className='hero'>
-          <h1 className='hero__title'>Учебный проект студента факультета Веб-разработки.</h1>
-          <img className='hero__logo' src={heroLogoPath} alt='Декоративный рисунок в виде кругов' />
-        </div>
-    );
+  return (
+    <div className='hero'>
+      <h1 className='hero__title'>
+        Учебный проект студента факультета Веб-разработки.
+      </h1>
+      <div className='hero__logo-container'></div>
+    </div>
+  );
 };
 
 export default Hero;

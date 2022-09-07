@@ -1,9 +1,10 @@
-import React from 'react';
-import Hero from '../Hero/Hero.component';
+import React from "react";
+import "./App.styles.scss";
+import Hero from "../Hero/Hero.component";
 
 const App = () => {
   return (
-    <div className="App">
+    <div className='App'>
       <Hero />
     </div>
   );
