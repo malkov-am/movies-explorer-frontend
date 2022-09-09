@@ -1,178 +1,177 @@
 @import "../../utils/colors";
 
 .about-me {
-    padding: 70px 15px 50px 15px;
-  
+  padding: 70px 15px 50px 15px;
+
+  @media screen and (min-width: 640px) {
+    padding: 91px 50px 70px 50px;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 110px 70px 115px 70px;
+  }
+
+  &__container {
+    display: grid;
+    justify-items: center;
+    row-gap: 42px;
+
     @media screen and (min-width: 640px) {
-      padding: 91px 50px 70px 50px;
+      justify-content: space-between;
+      grid-template-columns: minmax(150px, 600px) 252px;
+      column-gap: 60px;
     }
     @media screen and (min-width: 1024px) {
-      padding: 110px 70px 115px 70px;
+      grid-template-columns: minmax(150px, 600px) 268px;
+    }
+  }
+
+  &__description {
+    @media screen and (min-width: 640px) {
+      grid-row: 1 / 2;
+    }
+  }
+
+  &__name {
+    color: $color-text;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: -0.04em;
+    margin: 0;
+    padding-bottom: 20px;
+
+    @media screen and (min-width: 640px) {
+      font-size: 40px;
+      line-height: 40px;
+      padding-bottom: 13px;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 50px;
+      line-height: 58px;
+      padding-bottom: 15px;
+    }
+  }
+
+  &__about {
+    color: $color-text;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 16px;
+    margin: 0;
+    padding-bottom: 20px;
+
+    @media screen and (min-width: 640px) {
+      font-size: 12px;
+      line-height: 18px;
+      padding-bottom: 20px;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 18px;
+      line-height: 20px;
+      padding-bottom: 26px;
+    }
+  }
+
+  &__text {
+    color: $color-text;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    margin: 0;
+    padding-bottom: 40px;
+
+    @media screen and (min-width: 640px) {
+      font-size: 12px;
+      line-height: 18px;
+      padding-bottom: 87px;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 14px;
+      line-height: 22px;
+      padding-bottom: 99px;
+    }
+  }
+
+  &__description-link {
+    display: block;
+    text-decoration: none;
+    color: $color-text;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    padding-bottom: 70px;
+
+    @media screen and (min-width: 640px) {
+      padding-bottom: 92px;
+    }
+    @media screen and (min-width: 1024px) {
+      padding-bottom: 101px;
     }
 
-    &__container {
-        display: grid;
-        justify-items: center;
-        row-gap: 42px;
-
-        @media screen and (min-width: 640px) {
-            justify-content: space-between;
-            grid-template-columns: minmax(150px, 600px) 252px;
-            column-gap: 60px;
-          }
-          @media screen and (min-width: 1024px) {
-            grid-template-columns: minmax(150px, 600px) 268px;
-          }
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    &__description {
-        @media screen and (min-width: 640px) {
-                grid-row: 1 / 2;
-          }
-    }
-
-    &__name {
-        color: $color-text;
-        font-size: 30px;
-        font-weight: 400;
-        line-height: 36px;
-        letter-spacing: -0.04em;
-        margin: 0;
-        padding-bottom: 20px;
-
-        @media screen and (min-width: 640px) {
-            font-size: 40px;
-            line-height: 40px;
-            padding-bottom: 13px;
-          }
-          @media screen and (min-width: 1024px) {
-            font-size: 50px;
-            line-height: 58px;
-            padding-bottom: 15px;
-          }
-    }
-
-    &__about {
-        color: $color-text;
-        font-size: 11px;
-        font-weight: 500;
-        line-height: 16px;
-        margin: 0;
-        padding-bottom: 20px;
-
-        
-        @media screen and (min-width: 640px) {
-            font-size: 12px;
-            line-height: 18px;
-            padding-bottom: 20px;
-        }
-        @media screen and (min-width: 1024px) {
-            font-size: 18px;
-            line-height: 20px;
-            padding-bottom: 26px;
-        }
-    }
-
-    &__text {
-        color: $color-text;
-        font-size: 11px;
-        font-weight: 400;
-        line-height: 16px;
-        margin: 0;
-        padding-bottom: 40px;
-
-        @media screen and (min-width: 640px) {
-            font-size: 12px;
-            line-height: 18px;
-            padding-bottom: 87px;
-        }
-        @media screen and (min-width: 1024px) {
-            font-size: 14px;
-            line-height: 22px;
-            padding-bottom: 99px;
-        }
-    }
-
-    &__description-link {
-        display: block;
-        text-decoration: none;
-        color: $color-text;
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 17px;
-        padding-bottom: 70px;
-
-        @media screen and (min-width: 640px) {
-            padding-bottom: 92px;
-        }
-        @media screen and (min-width: 1024px) {
-            padding-bottom: 101px;
-        }
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-    &__photo {
+  &__photo {
     border-radius: 10px;
     width: 100%;
+  }
+
+  &__portfolio {
+    color: $color-text-light;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0;
+    padding-bottom: 40px;
+
+    @media screen and (min-width: 640px) {
+      font-size: 18px;
+      line-height: 20px;
+      padding-bottom: 50px;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $color-text;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 28px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $color-underline;
+    padding-bottom: 19px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in;
+
+    &:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
     }
 
-    &__portfolio {
-        color: $color-text-light;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 20px;
-        margin: 0;
-        padding-bottom: 40px;
-
-        @media screen and (min-width: 640px) {
-            font-size: 18px;
-            line-height: 20px;
-            padding-bottom: 50px;
-        }
+    @media screen and (min-width: 640px) {
+      font-size: 28px;
+      line-height: 50px;
     }
-
-    &__link {
-        text-decoration: none;
-        color: $color-text;
-        font-size: 18px;
-        font-weight: 400;
-        letter-spacing: -0.04em;
-        line-height: 28px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid $color-underline;
-        padding-bottom: 19px;
-        margin-bottom: 20px;
-        transition: all .3s ease-in;
-
-        &:hover {
-            transform: translate(-1px, -1px);
-            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
-        }
-
-        @media screen and (min-width: 640px) {
-            font-size: 28px;
-            line-height: 50px;
-        }
-        @media screen and (min-width: 1024px) {
-            font-size: 30px;
-        }
+    @media screen and (min-width: 1024px) {
+      font-size: 30px;
     }
+  }
 
-    &__arrow {
-        height: 18px;
-        width: 18px;
+  &__arrow {
+    height: 18px;
+    width: 18px;
 
-        @media screen and (min-width: 640px) {
-            height: 16px;
-            width: 16px;
-            margin-right: 5px;
-        }
+    @media screen and (min-width: 640px) {
+      height: 16px;
+      width: 16px;
+      margin-right: 5px;
     }
+  }
 }
