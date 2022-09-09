@@ -9,6 +9,7 @@ export const BUTTON_TYPE_CLASSES = {
   account: "account",
   like: "like",
   dislike: "dislike",
+  home: "home",
 };
 
 const Button = ({ buttonType, children, ...otherProps }) => {

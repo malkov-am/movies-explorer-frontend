@@ -1,0 +1,107 @@
+@import "../../utils/colors";
+
+.footer {
+  padding: 79px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (min-width: 640px) {
+    padding: 79px 30px 20px 30px;
+    gap: 20px;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 79px 70px 20px 70px;
+  }
+
+  &__copyright {
+    padding: 0 0 21px 0;
+    border-bottom: 1px solid $color-underline;
+    text-align: center;
+    color: $color-placeholder;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    width: 100%;
+    margin: 0;
+
+    @media screen and (min-width: 640px) {
+      font-size: 13px;
+      line-height: 16px;
+      padding: 0 0 20px 0;
+    }
+    @media screen and (min-width: 1024px) {
+    }
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    @media screen and (min-width: 640px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: center;
+      gap: 0;
+    }
+    @media screen and (min-width: 1024px) {
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    @media screen and (min-width: 640px) {
+      flex-direction: row;
+      align-content: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    @media screen and (min-width: 1024px) {
+    }
+  }
+
+  &__link {
+    display: inline;
+    text-decoration: none;
+    color: $color-text;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+
+    @media screen and (min-width: 640px) {
+      font-size: 13px;
+      line-height: 16px;
+    }
+    @media screen and (min-width: 1024px) {
+    }
+
+    &:last-of-type {
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__year {
+    color: $color-placeholder;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    margin: 0;
+
+    @media screen and (min-width: 640px) {
+      font-size: 13px;
+      line-height: 16px;
+      order: -1;
+    }
+  }
+}

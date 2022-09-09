@@ -4,16 +4,18 @@ import Hero from "../Hero/Hero.component";
 import AboutProject from "../AboutProject/AboutProject.component";
 import Techs from "../Techs/Techs.component";
 import AboutMe from "../AboutMe/AboutMe.component";
-import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
+import Header from "../Header/Header.component";
+import Footer from "../Footer/Footer.component";
 
 const App = () => {
   return (
     <div className='App'>
-      <Button buttonType={BUTTON_TYPE_CLASSES.sizeS}>Войти</Button>
+      <Header />
       <Hero />
       <AboutProject />
       <Techs />
       <AboutMe />
+      <Footer />
     </div>
   );
 };

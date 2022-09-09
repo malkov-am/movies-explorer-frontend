@@ -11,7 +11,7 @@ const AboutMe = () => {
       <div className='about-me__container'>
         <img className='about-me__photo' src={photoPath} alt='Моя фотография' />
         <div className='about-me__description'>
-          <h3 className='about-me__name'>Виталий</h3>
+          <h3 className='about-me__name'>Андрей</h3>
           <h4 className='about-me__about'>Фронтенд-разработчик, 30 лет</h4>
           <p className='about-me__text'>
             Я родился и живу в Саратове, закончил факультет экономики СГУ. У
