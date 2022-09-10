@@ -8,7 +8,6 @@ export const BUTTON_TYPE_CLASSES = {
   link: "link",
   account: "account",
   like: "like",
-  dislike: "dislike",
   home: "home",
 };
 
