@@ -7,7 +7,9 @@ const Header = () => {
     <div className='header'>
       <Button buttonType={BUTTON_TYPE_CLASSES.home} />
       <div className='header__buttons-container'>
-        <Button buttonType={BUTTON_TYPE_CLASSES.link}>Регистрация</Button>
+        <Button buttonType={BUTTON_TYPE_CLASSES.link} color='white'>
+          Регистрация
+        </Button>
         <Button buttonType={BUTTON_TYPE_CLASSES.sizeS}>Войти</Button>
       </div>
     </div>

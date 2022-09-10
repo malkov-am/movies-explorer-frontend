@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import "./Button.styles.scss";
 
@@ -8,12 +9,21 @@ export const BUTTON_TYPE_CLASSES = {
   link: "link",
   account: "account",
   like: "like",
+  dislike: "dislike",
   home: "home",
+  more: "more",
 };
 
-const Button = ({ buttonType, children, ...otherProps }) => {
+const Button = ({ buttonType, color, children, ...otherProps }) => {
   return (
-    <button className={`button button_type_${buttonType}`} {...otherProps}>
+    <button
+      className={clsx("button", `button_type_${buttonType}`, {
+        button_color_black: color === "black",
+        button_color_white: color === "white",
+        button_color_pink: color === "pink",
+      })}
+      {...otherProps}
+    >
       {children}
     </button>
   );
