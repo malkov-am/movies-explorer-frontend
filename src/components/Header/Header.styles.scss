@@ -29,10 +29,33 @@
   &__buttons-container {
     display: none;
 
+    @media screen and (max-width: 1024px) {
+      display: flex;
+      box-sizing: border-box;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      right: -320px;
+      height: 100vh;
+      width: 320px;
+      background: inherit;
+      padding: 144px 0 46px 0;
+      transition: right, box-shadow 0.3s ease-in-out;
+    }
+
     @media screen and (min-width: 1024px) {
       display: flex;
       flex-direction: row;
       gap: 50px;
+    }
+  }
+
+  &__burger-menu {
+    right: 0;
+    @media screen and (max-width: 1024px) {
+      box-shadow: 0 0 0 1000px $color-overlay;
     }
   }
 
@@ -43,6 +66,20 @@
       display: flex;
       flex-direction: row;
       gap: 20px;
+    }
+  }
+
+  &__burger-links-container {
+    @media screen and (max-width: 1024px) {
+      display: flex;
+      gap: 24px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media screen and (min-width: 640px) {
+      gap: 28px;
     }
   }
 
