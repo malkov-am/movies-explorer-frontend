@@ -12,6 +12,15 @@ export const BUTTON_TYPE_CLASSES = {
   dislike: "dislike",
   home: "home",
   more: "more",
+  burger: "burger",
+};
+
+export const BUTTON_COLOR_CLASSES = {
+  black: "black",
+  white: "white",
+  pink: "pink",
+  burgerBlack: "burger-black",
+  burgerWhite: "burger-white",
 };
 
 const Button = ({ buttonType, color, children, ...otherProps }) => {
@@ -21,6 +30,8 @@ const Button = ({ buttonType, color, children, ...otherProps }) => {
         button_color_black: color === "black",
         button_color_white: color === "white",
         button_color_pink: color === "pink",
+        "button_color_burger-black": color === "burger-black",
+        "button_color_burger-white": color === "burger-white",
       })}
       {...otherProps}
     >

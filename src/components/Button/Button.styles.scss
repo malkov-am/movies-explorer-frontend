@@ -8,9 +8,11 @@
     opacity: 0.8;
     cursor: pointer;
   }
+
   &:active {
     opacity: 1;
   }
+
   &_type_size-s {
     background: $color-ui;
     width: 54px;
@@ -27,6 +29,7 @@
       line-height: 16px;
     }
   }
+
   &_type_size-m {
     background: $color-ui;
     width: 80px;
@@ -41,6 +44,7 @@
       height: 52px;
     }
   }
+
   &_type_size-l {
     background: $color-ui;
     width: 260px;
@@ -57,6 +61,7 @@
       line-height: 17px;
     }
   }
+
   &_type_link {
     background: none;
     font-size: 10px;
@@ -68,12 +73,13 @@
       line-height: 16px;
     }
   }
+
   &_type_account {
     background: $color-background-light;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 100px;
     height: 32px;
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 13px;
     font-weight: 500;
     line-height: 12px;
@@ -109,6 +115,7 @@
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
     }
   }
+
   &_type_like {
     background: $color-input no-repeat
       url("../../images/button/button-like.svg");
@@ -117,11 +124,13 @@
     height: 30px;
     border-radius: 50%;
   }
+
   &_type_like_active {
     background: $color-ui no-repeat
       url("../../images/button/button-like-active.svg");
     background-position: center;
   }
+
   &_type_dislike {
     background: $color-input no-repeat
       url("../../images/button/button-dislike.svg");
@@ -130,11 +139,13 @@
     height: 30px;
     border-radius: 50%;
   }
+
   &_type_home {
     background: no-repeat url("../../images/header/header-logo.svg");
     width: 38px;
     height: 38px;
   }
+
   &_type_more {
     width: 240px;
     height: 36px;
@@ -150,13 +161,41 @@
       height: 36px;
     }
   }
+
+  &_type_burger {
+    width: 40px;
+    height: 40px;
+
+    @media screen and (min-width: 640px) {
+      width: 44px;
+      height: 44px;
+    }
+    @media screen and (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &_type_burger_active {
+    background: no-repeat url("../../images/button/button-burger-active.svg");
+  }
+
   &_color_black {
     color: $color-text;
   }
+
   &_color_white {
     color: $color-text-inverted;
   }
+
   &_color_pink {
     color: $color-error;
+  }
+
+  &_color_burger-black {
+    background: no-repeat url("../../images/button/button-burger.svg");
+  }
+
+  &_color_burger-white {
+    background: no-repeat url("../../images/button/button-burger-white.svg");
   }
 }
