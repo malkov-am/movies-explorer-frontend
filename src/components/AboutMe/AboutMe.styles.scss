@@ -1,13 +1,13 @@
 @import "../../utils/colors";
 
 .about-me {
-  padding: 70px 15px 50px 15px;
+  padding: 70px 15px 35px 15px;
 
   @media screen and (min-width: 640px) {
-    padding: 91px 50px 70px 50px;
+    padding: 91px 50px 45px 50px;
   }
   @media screen and (min-width: 1024px) {
-    padding: 110px 70px 106px 70px;
+    padding: 110px 70px 50px 70px;
   }
 
   &__container {
@@ -99,14 +99,6 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
-    padding-bottom: 70px;
-
-    @media screen and (min-width: 640px) {
-      padding-bottom: 92px;
-    }
-    @media screen and (min-width: 1024px) {
-      padding-bottom: 101px;
-    }
 
     &:hover {
       opacity: 0.8;
@@ -116,66 +108,5 @@
   &__photo {
     border-radius: 10px;
     width: 100%;
-  }
-
-  &__portfolio {
-    color: $color-text-light;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    margin: 0;
-    padding-bottom: 40px;
-
-    @media screen and (min-width: 640px) {
-      font-size: 18px;
-      line-height: 20px;
-      padding-bottom: 50px;
-    }
-  }
-
-  &__link {
-    text-decoration: none;
-    color: $color-text;
-    font-size: 18px;
-    font-weight: 400;
-    letter-spacing: -0.04em;
-    line-height: 28px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid $color-underline;
-    padding-bottom: 19px;
-    margin-bottom: 20px;
-    transition: all 0.3s ease-in;
-
-    &:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.04);
-    }
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-
-    @media screen and (min-width: 640px) {
-      font-size: 28px;
-      line-height: 50px;
-    }
-    @media screen and (min-width: 1024px) {
-      font-size: 30px;
-    }
-  }
-
-  &__arrow {
-    height: 18px;
-    width: 18px;
-
-    @media screen and (min-width: 640px) {
-      height: 16px;
-      width: 16px;
-      margin-right: 5px;
-    }
   }
 }

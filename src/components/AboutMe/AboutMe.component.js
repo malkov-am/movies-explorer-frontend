@@ -2,7 +2,6 @@ import React from "react";
 import LandingHeader from "../LandingHeader/LandingHeader.component";
 import "./AboutMe.styles.scss";
 import photoPath from "../../images/landing/about-me-photo.jpg";
-import arrowPath from "../../images/landing/about-me-arrow.svg";
 
 const AboutMe = () => {
   return (
@@ -30,34 +29,6 @@ const AboutMe = () => {
           </a>
         </div>
       </div>
-      <h4 className='about-me__portfolio'>Портфолио</h4>
-      <a
-        className='about-me__link'
-        href='https://howtolearn.herokuapp.com/home.html'
-        target='_blank'
-        rel='noreferrer'
-      >
-        Статичный сайт
-        <img className='about-me__arrow' src={arrowPath} alt='Ссылка' />
-      </a>
-      <a
-        className='about-me__link'
-        href='https://russian-travel.herokuapp.com/home.html'
-        target='_blank'
-        rel='noreferrer'
-      >
-        Адаптивный сайт
-        <img className='about-me__arrow' src={arrowPath} alt='Ссылка' />
-      </a>
-      <a
-        className='about-me__link'
-        href='https://malkov.mesto.nomoredomains.sbs'
-        target='_blank'
-        rel='noreferrer'
-      >
-        Одностраничное приложение
-        <img className='about-me__arrow' src={arrowPath} alt='Ссылка' />
-      </a>
     </section>
   );
 };
