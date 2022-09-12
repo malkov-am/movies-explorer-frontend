@@ -1,6 +1,6 @@
 import React from 'react';
 import './SearchForm.styles.scss';
-import Switch from '../Switch/Switch.component';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox.component';
 import Button, {
     BUTTON_COLOR_CLASSES,
     BUTTON_TYPE_CLASSES,
@@ -15,7 +15,7 @@ const SearchForm = () => {
                 <Button buttonType={BUTTON_TYPE_CLASSES.sizeM} color={BUTTON_COLOR_CLASSES.white}>Поиск</Button>
             </form>
           </div>
-          <Switch>Короткометражки</Switch>
+          <FilterCheckbox>Короткометражки</FilterCheckbox>
         </div>
     );
 };

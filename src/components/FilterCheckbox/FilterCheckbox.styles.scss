@@ -1,6 +1,6 @@
 @import "../../utils/colors";
 
-.switch {
+.filter {
   display: inline-block;
   cursor: pointer;
 
@@ -43,7 +43,7 @@
   }
 }
 
-.switch__checkbox:checked + .switch__pseudo-item::before {
+.filter__checkbox:checked + .filter__pseudo-item::before {
   background-color: $color-ui;
   transform: translateX(16px);
 }
