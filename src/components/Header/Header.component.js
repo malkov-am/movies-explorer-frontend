@@ -10,7 +10,8 @@ import clsx from "clsx";
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isLoggedIn = true;
+  const isLoggedIn = false;
+  if (location.pathname.startsWith("/sign")) return null;
 
   let buttons;
   if (isLoggedIn) {
@@ -77,10 +78,11 @@ const Header = () => {
           <Button
             buttonType={BUTTON_TYPE_CLASSES.link}
             color={location.pathname === "/" ? "white" : "black"}
+            onClick={() => navigate("/signup")}
           >
             Регистрация
           </Button>
-          <Button buttonType={BUTTON_TYPE_CLASSES.sizeS}>Войти</Button>
+          <Button buttonType={BUTTON_TYPE_CLASSES.sizeS} onClick={() => navigate("/signin")}>Войти</Button>
         </div>
       </>
     );

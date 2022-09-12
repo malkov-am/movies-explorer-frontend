@@ -1,7 +1,11 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import "./Footer.styles.scss";
 
 const Footer = () => {
+  const location = useLocation();
+  if (location.pathname.startsWith("/sign")) return null;
+
   return (
     <div className='footer'>
       <p className='footer__copyright'>
