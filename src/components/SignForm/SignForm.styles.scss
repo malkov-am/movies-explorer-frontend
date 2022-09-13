@@ -59,7 +59,7 @@
     color: $color-text;
     background: $color-input;
     padding: 15px;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
     border: none;
     border-radius: 8px;
     box-shadow: inset 0 0 0 50px $color-input;
@@ -77,8 +77,15 @@
     font-size: 10px;
     font-weight: 500;
     line-height: 12px;
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
     color: $color-error;
+    height: 24px;
+    width: 260px;
+    overflow: hidden;
+
+    @media screen and (min-width: 640px) {
+      width: 396px;
+    }
 
     &:last-of-type {
       margin: 0;
