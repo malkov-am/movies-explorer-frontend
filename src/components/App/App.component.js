@@ -12,7 +12,7 @@ import Register from "../Register/Register.component";
 
 const App = () => {
   return (
-    <div className='App'>
+    <div className='app'>
       <Header />
       <Routes>
         <Route path='/' element={<Main />} />

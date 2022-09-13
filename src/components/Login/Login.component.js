@@ -14,12 +14,12 @@ const Login = () => {
         <label for='email' className='sign__form-label'>
           E-mail
         </label>
-        <input name='email' className='sign__form-input' type='text' />
+        <input id='email' className='sign__form-input' type='text' />
         <p className='sign__form-err-message'>Что-то пошло не так...</p>
         <label for='password' className='sign__form-label'>
           Пароль
         </label>
-        <input name='password' className='sign__form-input' type='password' />
+        <input id='password' className='sign__form-input' type='password' />
         <p className='sign__form-err-message'>Что-то пошло не так...</p>
       </div>
       <div className='sign__form-buttons'>

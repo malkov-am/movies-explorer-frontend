@@ -4,7 +4,7 @@ import "./Footer.styles.scss";
 
 const Footer = () => {
   const location = useLocation();
-  if (location.pathname.startsWith("/sign")) return null;
+  if (location.pathname.startsWith("/sign") || location.pathname === '/profile') return null;
 
   return (
     <div className='footer'>

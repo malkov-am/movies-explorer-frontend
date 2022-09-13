@@ -11,29 +11,29 @@ const Techs = () => {
         На курсе веб-разработки мы освоили технологии, которые применили в
         дипломном проекте.
       </p>
-      <div className='techs__cards'>
-        <div className='techs__card'>
+      <ul className='techs__cards'>
+        <li className='techs__card'>
           <p className='techs__card-title'>HTML</p>
-        </div>
-        <div className='techs__card'>
+        </li>
+        <li className='techs__card'>
           <p className='techs__card-title'>CSS</p>
-        </div>
-        <div className='techs__card'>
+        </li>
+        <li className='techs__card'>
           <p className='techs__card-title'>JS</p>
-        </div>
-        <div className='techs__card'>
+        </li>
+        <li className='techs__card'>
           <p className='techs__card-title'>React</p>
-        </div>
-        <div className='techs__card'>
+        </li>
+        <li className='techs__card'>
           <p className='techs__card-title'>Git</p>
-        </div>
-        <div className='techs__card'>
+        </li>
+        <li className='techs__card'>
           <p className='techs__card-title'>Express.js</p>
-        </div>
-        <div className='techs__card'>
+        </li>
+        <li className='techs__card'>
           <p className='techs__card-title'>mongoDB</p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
   );
 };

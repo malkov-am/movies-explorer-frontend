@@ -14,17 +14,17 @@ const Register = () => {
         <label for='name' className='sign__form-label'>
             Имя
           </label>
-          <input name='name' className='sign__form-input' type='text' />
+          <input id='name' className='sign__form-input' type='text' />
           <p className='sign__form-err-message'>Что-то пошло не так...</p>
           <label for='email' className='sign__form-label'>
             E-mail
           </label>
-          <input name='email' className='sign__form-input' type='text' />
+          <input id='email' className='sign__form-input' type='text' />
           <p className='sign__form-err-message'>Что-то пошло не так...</p>
           <label for='password' className='sign__form-label'>
             Пароль
           </label>
-          <input name='password' className='sign__form-input' type='password' />
+          <input id='password' className='sign__form-input' type='password' />
           <p className='sign__form-err-message'>Что-то пошло не так...</p>
         </div>
         <div className='sign__form-buttons'>
@@ -32,7 +32,7 @@ const Register = () => {
             buttonType={BUTTON_TYPE_CLASSES.sizeL}
             color={BUTTON_COLOR_CLASSES.white}
           >
-            Войти
+            Зарегистрироваться
           </Button>
           <p className='sign__form-invite'>
             Уже зарегистрированы?
