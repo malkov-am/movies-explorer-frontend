@@ -19,6 +19,7 @@ export const BUTTON_COLOR_CLASSES = {
   black: "black",
   white: "white",
   pink: "pink",
+  ui: "ui",
   burgerBlack: "burger-black",
   burgerWhite: "burger-white",
 };
@@ -30,6 +31,7 @@ const Button = ({ buttonType, color, children, ...otherProps }) => {
         button_color_black: color === "black",
         button_color_white: color === "white",
         button_color_pink: color === "pink",
+        button_color_ui: color === "ui",
         "button_color_burger-black": color === "burger-black",
         "button_color_burger-white": color === "burger-white",
       })}

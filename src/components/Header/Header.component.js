@@ -8,8 +8,9 @@ import Navigation from "../Navigation/Navigation.component";
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  if (location.pathname.startsWith("/sign")) return null;
+  const routesWithHeader = ['/', '/movies', '/saved-movies', '/profile'];
 
+  if (routesWithHeader.includes(location.pathname)) {
   return (
     <div
       className={clsx("header", {
@@ -23,7 +24,9 @@ const Header = () => {
       />
       <Navigation />
     </div>
-  );
+  )
+    };
+    return null;
 };
 
 export default Header;

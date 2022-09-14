@@ -4,8 +4,9 @@ import "./Footer.styles.scss";
 
 const Footer = () => {
   const location = useLocation();
-  if (location.pathname.startsWith("/sign") || location.pathname === '/profile') return null;
+  const routesWithFooter = ['/', '/movies', '/saved-movies'];
 
+  if (routesWithFooter.includes(location.pathname)) {
   return (
     <div className='footer'>
       <p className='footer__copyright'>
@@ -34,6 +35,8 @@ const Footer = () => {
       </div>
     </div>
   );
+  }
+  return null;
 };
 
 export default Footer;

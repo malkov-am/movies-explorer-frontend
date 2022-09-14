@@ -189,6 +189,10 @@
     color: $color-error;
   }
 
+  &_color_ui {
+    color: $color-ui;
+  }
+
   &_color_burger-black {
     background: no-repeat url("../../images/button/button-burger.svg");
   }

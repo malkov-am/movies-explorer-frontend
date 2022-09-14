@@ -9,18 +9,20 @@ import SavedMovies from "../SavedMovies/SavedMovies.component";
 import Profile from "../Profile/Profile.component";
 import Login from "../Login/Login.component";
 import Register from "../Register/Register.component";
+import NotFound from "../NotFound/NotFound.component";
 
 const App = () => {
   return (
     <div className='app'>
       <Header />
       <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/movies' element={<Movies />} />
-        <Route path='/saved-movies' element={<SavedMovies />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/signin' element={<Login />} />
-        <Route path='/signup' element={<Register />} />
+        <Route exact path='/' element={<Main />} />
+        <Route exact path='/movies' element={<Movies />} />
+        <Route exact path='/saved-movies' element={<SavedMovies />} />
+        <Route exact path='/profile' element={<Profile />} />
+        <Route exact path='/signin' element={<Login />} />
+        <Route exact path='/signup' element={<Register />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
     </div>
