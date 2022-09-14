@@ -59,11 +59,15 @@
     line-height: 22px;
     text-decoration: none;
     padding-bottom: 7px;
+
     @media screen and (min-width: 1024px) {
       padding: 0;
       font-size: 14px;
       font-weight: 400;
       line-height: 18px;
+      &:first-child {
+        display: none;
+      }
     }
 
     &_active {

@@ -4,6 +4,36 @@
   appearance: none;
   border: none;
 
+  &_color_black {
+    color: $color-text;
+  }
+
+  &_color_white {
+    color: $color-text-inverted;
+  }
+
+  &_color_pink {
+    color: $color-error;
+  }
+
+  &_color_ui {
+    color: $color-ui;
+  }
+
+  &_color_burger-black {
+    background: no-repeat url("../../images/button/button-burger.svg");
+  }
+
+  &_color_burger-white {
+    background: no-repeat url("../../images/button/button-burger-white.svg");
+  }
+  &_type_burger_active {
+    background: no-repeat url("../../images/button/button-burger-active.svg");
+    position: fixed;
+    top: 17px;
+    right: 14px;
+  }
+
   &:hover {
     opacity: 0.8;
     cursor: pointer;
@@ -60,6 +90,13 @@
       font-size: 14px;
       line-height: 17px;
     }
+
+    &_disabled {
+      pointer-events: none;
+      background: $color-background-light;
+      color: $color-text-light;
+      border: 1px solid $color-text-light;
+    }
   }
 
   &_type_link {
@@ -71,6 +108,11 @@
     @media screen and (min-width: 640px) {
       font-size: 13px;
       line-height: 16px;
+    }
+
+    &_disabled {
+      pointer-events: none;
+      color: $color-text-light;
     }
   }
 
@@ -123,12 +165,12 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-  }
 
-  &_type_like_active {
-    background: $color-ui no-repeat
-      url("../../images/button/button-like-active.svg");
-    background-position: center;
+    &_active {
+      background: $color-ui no-repeat
+        url("../../images/button/button-like-active.svg");
+      background-position: center;
+    }
   }
 
   &_type_dislike {
@@ -175,35 +217,5 @@
     @media screen and (min-width: 1024px) {
       display: none;
     }
-  }
-
-  &_color_black {
-    color: $color-text;
-  }
-
-  &_color_white {
-    color: $color-text-inverted;
-  }
-
-  &_color_pink {
-    color: $color-error;
-  }
-
-  &_color_ui {
-    color: $color-ui;
-  }
-
-  &_color_burger-black {
-    background: no-repeat url("../../images/button/button-burger.svg");
-  }
-
-  &_color_burger-white {
-    background: no-repeat url("../../images/button/button-burger-white.svg");
-  }
-  &_type_burger_active {
-    background: no-repeat url("../../images/button/button-burger-active.svg");
-    position: fixed;
-    top: 17px;
-    right: 14px;
   }
 }

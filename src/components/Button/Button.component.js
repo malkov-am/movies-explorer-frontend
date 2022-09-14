@@ -24,10 +24,10 @@ export const BUTTON_COLOR_CLASSES = {
   burgerWhite: "burger-white",
 };
 
-const Button = ({ buttonType, color, children, ...otherProps }) => {
+const Button = ({ buttonType, color, isActive, isDisabled, children, ...otherProps }) => {
   return (
     <button
-      className={clsx("button", `button_type_${buttonType}`, {
+      className={clsx("button", `button_type_${buttonType}`, isActive && `button_type_${buttonType}_disabled`, isDisabled && `button_type_${buttonType}_disabled`,{
         button_color_black: color === "black",
         button_color_white: color === "white",
         button_color_pink: color === "pink",

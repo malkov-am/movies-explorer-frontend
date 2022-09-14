@@ -8,11 +8,11 @@ import useValidation from "../../hooks/useValidation";
 
 const Profile = () => {
     // Валидация формы
-    const { values, errors, isValid, handleChange, resetForms } = useValidation('.form');
+    const { values, errors, isValid, handleChange, resetForms } = useValidation('.profile__form');
     // Сброс полей формы при открытии
     useEffect(() => {
       resetForms();
-    }, []);
+    }, [resetForms]);
 
   return (
     <div className='profile'>
@@ -21,7 +21,7 @@ const Profile = () => {
         <div className='profile__form-inputs'>
           <div className='profile__input-container'>
             <div className='profile__input-wrapper'>
-              <label for='name' className='profile__form-label'>
+              <label htmlFor='name' className='profile__form-label'>
                 Имя
               </label>
               <input
@@ -41,7 +41,7 @@ const Profile = () => {
           </div>
           <div className='profile__input-container'>
             <div className='profile__input-wrapper'>
-              <label for='email' className='profile__form-label'>
+              <label htmlFor='email' className='profile__form-label'>
                 E-mail
               </label>
               <input
@@ -62,6 +62,7 @@ const Profile = () => {
           <Button
             buttonType={BUTTON_TYPE_CLASSES.link}
             color={BUTTON_COLOR_CLASSES.black}
+            isDisabled={!isValid}
           >
             Редактировать
           </Button>

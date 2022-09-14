@@ -17,6 +17,23 @@ const Navigation = () => {
       <>
         <nav className='navigation'>
           <div className='navigation__links-container'>
+          <NavLink
+              to='/'
+              className={({ isActive }) =>
+                clsx(
+                  "navigation__link",
+                  {
+                    navigation__link_color_black: location.pathname !== "/",
+                    navigation__link_color_white: location.pathname === "/",
+                  },
+                  {
+                    navigation__link_active: isActive,
+                  }
+                )
+              }
+            >
+              Главная
+            </NavLink>
             <NavLink
               to='/movies'
               className={({ isActive }) =>

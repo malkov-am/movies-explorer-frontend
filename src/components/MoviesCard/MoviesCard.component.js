@@ -11,7 +11,7 @@ const MoviesCard = ({ card }) => {
           <h3 className='card__title'>{nameRU}</h3>
           <p className='card__duration'>{duration}</p>
         </div>
-        <Button buttonType={BUTTON_TYPE_CLASSES.like} />
+        <Button buttonType={BUTTON_TYPE_CLASSES.like} isActive={true} />
       </div>
       <img className='card__img' src={image} alt={nameRU} />
     </article>
