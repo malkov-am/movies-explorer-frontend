@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Profile.styles.scss";
 import Button, {
   BUTTON_COLOR_CLASSES,
   BUTTON_TYPE_CLASSES,
 } from "../Button/Button.component";
+import useValidation from "../../hooks/useValidation";
 
 const Profile = () => {
+    // Валидация формы
+    const { values, errors, isValid, handleChange, resetForms } = useValidation('.form');
+    // Сброс полей формы при открытии
+    useEffect(() => {
+      resetForms();
+    }, []);
+
   return (
     <div className='profile'>
       <h2 className='profile__title'>Привет, Виталий!</h2>
@@ -17,13 +25,19 @@ const Profile = () => {
                 Имя
               </label>
               <input
+                name="name"
                 id='name'
                 className='profile__form-input'
                 type='text'
+                required
+                minLength="2"
+                maxLength="30" 
                 placeholder='Виталий'
+                onChange={handleChange}
+                value={values.name || ''}
               />
             </div>
-            <p className='profile__form-err-message'>Что-то пошло не так...</p>
+            <p className='profile__form-err-message'>{errors.name}</p>
           </div>
           <div className='profile__input-container'>
             <div className='profile__input-wrapper'>
@@ -31,13 +45,17 @@ const Profile = () => {
                 E-mail
               </label>
               <input
+                name="email"
                 id='email'
                 className='profile__form-input'
-                type='text'
+                type='email'
+                required
                 placeholder='pochta@yandex.ru'
+                onChange={handleChange}
+                value={values.email || ''}
               />
             </div>
-            <p className='profile__form-err-message'>Что-то пошло не так...</p>
+            <p className='profile__form-err-message'>{errors.email}</p>
           </div>
         </div>
         <div className='profile__buttons-container'>

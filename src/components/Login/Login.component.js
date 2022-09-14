@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Login.styles.scss";
 import Button, {
   BUTTON_COLOR_CLASSES,
@@ -6,21 +6,29 @@ import Button, {
 } from "../Button/Button.component";
 import SignForm from "../SignForm/SignForm.component";
 import { Link } from "react-router-dom";
+import useValidation from "../../hooks/useValidation";
 
 const Login = () => {
+  // Валидация формы
+  const { values, errors, isValid, handleChange, resetForms } = useValidation('.form');
+    // Сброс полей формы при открытии
+    useEffect(() => {
+      resetForms();
+    }, []);
+
   return (
     <SignForm title='Рады видеть!'>
       <div>
         <label for='email' className='sign__form-label'>
           E-mail
         </label>
-        <input id='email' className='sign__form-input' type='text' />
-        <p className='sign__form-err-message'>Что-то пошло не так...</p>
+        <input name="email" id='email' className='sign__form-input' type='email' required onChange={handleChange} value={values.email || ''} />
+        <p className='sign__form-err-message'>{errors.email}</p>
         <label for='password' className='sign__form-label'>
           Пароль
         </label>
-        <input id='password' className='sign__form-input' type='password' />
-        <p className='sign__form-err-message'>Что-то пошло не так...</p>
+        <input name="password" id='password' className='sign__form-input' type='password' required minLength="6" maxLength="30" onChange={handleChange} value={values.password || ''} />
+        <p className='sign__form-err-message'>{errors.password}</p>
       </div>
       <div className='sign__form-buttons'>
         <Button
