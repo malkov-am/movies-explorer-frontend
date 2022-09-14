@@ -4,37 +4,37 @@ import "./Footer.styles.scss";
 
 const Footer = () => {
   const location = useLocation();
-  const routesWithFooter = ['/', '/movies', '/saved-movies'];
+  const routesWithFooter = ["/", "/movies", "/saved-movies"];
 
   if (routesWithFooter.includes(location.pathname)) {
-  return (
-    <div className='footer'>
-      <p className='footer__copyright'>
-        Учебный проект Яндекс.Практикум х BeatFilm.
-      </p>
-      <div className='footer__container'>
-        <div className='footer__links'>
-          <a
-            href='https://practicum.yandex.ru'
-            target='_blank'
-            rel='noreferrer'
-            className='footer__link'
-          >
-            Яндекс.Практикум
-          </a>
-          <a
-            href='https://github.com'
-            target='_blank'
-            rel='noreferrer'
-            className='footer__link'
-          >
-            Github
-          </a>
+    return (
+      <div className='footer'>
+        <p className='footer__copyright'>
+          Учебный проект Яндекс.Практикум х BeatFilm.
+        </p>
+        <div className='footer__container'>
+          <div className='footer__links'>
+            <a
+              href='https://practicum.yandex.ru'
+              target='_blank'
+              rel='noreferrer'
+              className='footer__link'
+            >
+              Яндекс.Практикум
+            </a>
+            <a
+              href='https://github.com'
+              target='_blank'
+              rel='noreferrer'
+              className='footer__link'
+            >
+              Github
+            </a>
+          </div>
+          <p className='footer__year'>&copy;2020</p>
         </div>
-        <p className='footer__year'>&copy;2020</p>
       </div>
-    </div>
-  );
+    );
   }
   return null;
 };

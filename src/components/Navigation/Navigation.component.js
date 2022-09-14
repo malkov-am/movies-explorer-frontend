@@ -17,7 +17,7 @@ const Navigation = () => {
       <>
         <nav className='navigation'>
           <div className='navigation__links-container'>
-          <NavLink
+            <NavLink
               to='/'
               className={({ isActive }) =>
                 clsx(

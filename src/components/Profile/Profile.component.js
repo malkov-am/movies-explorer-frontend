@@ -7,12 +7,13 @@ import Button, {
 import useValidation from "../../hooks/useValidation";
 
 const Profile = () => {
-    // Валидация формы
-    const { values, errors, isValid, handleChange, resetForms } = useValidation('.profile__form');
-    // Сброс полей формы при открытии
-    useEffect(() => {
-      resetForms();
-    }, [resetForms]);
+  // Валидация формы
+  const { values, errors, isValid, handleChange, resetForms } =
+    useValidation(".profile__form");
+  // Сброс полей формы при открытии
+  useEffect(() => {
+    resetForms();
+  }, [resetForms]);
 
   return (
     <div className='profile'>
@@ -25,16 +26,16 @@ const Profile = () => {
                 Имя
               </label>
               <input
-                name="name"
+                name='name'
                 id='name'
                 className='profile__form-input'
                 type='text'
                 required
-                minLength="2"
-                maxLength="30" 
+                minLength='2'
+                maxLength='30'
                 placeholder='Виталий'
                 onChange={handleChange}
-                value={values.name || ''}
+                value={values.name || ""}
               />
             </div>
             <p className='profile__form-err-message'>{errors.name}</p>
@@ -45,14 +46,14 @@ const Profile = () => {
                 E-mail
               </label>
               <input
-                name="email"
+                name='email'
                 id='email'
                 className='profile__form-input'
                 type='email'
                 required
                 placeholder='pochta@yandex.ru'
                 onChange={handleChange}
-                value={values.email || ''}
+                value={values.email || ""}
               />
             </div>
             <p className='profile__form-err-message'>{errors.email}</p>

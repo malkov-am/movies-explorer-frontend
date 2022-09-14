@@ -1,17 +1,16 @@
 @import "../../utils/colors";
 
 .movies {
-    padding: 70px 14px 80px 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
+  padding: 70px 14px 80px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
 
-
-    @media screen and (min-width: 640px) {
-        padding: 70px 30px 80px 30px;
-      }
-      @media screen and (min-width: 1024px) {
-        padding: 70px 70px 80px 70px;
-      }
+  @media screen and (min-width: 640px) {
+    padding: 70px 30px 80px 30px;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 70px 70px 80px 70px;
+  }
 }
