@@ -11,3 +11,7 @@
 ## Ссылка на репозиторий проекта на GitHub:
 
 - [Ссылка на репозиторий](https://github.com/malkov-am/movies-explorer-frontend)
+
+## Ссылка на макет в Figma:
+
+- [Ссылка на макет](https://disk.yandex.ru/d/5CCWsE26Oneavw)
