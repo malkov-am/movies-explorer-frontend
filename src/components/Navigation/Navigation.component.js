@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navigation.styles.scss";
 import Button, {
   BUTTON_COLOR_CLASSES,
@@ -11,70 +11,31 @@ const Navigation = () => {
   const isLoggedIn = true;
   const location = useLocation();
   const navigate = useNavigate();
+  const [isMenuOpen, setMenuOpen] = useState('false');
+
+  const navLinkClassName = ({ isActive }) =>
+  clsx(
+    "navigation__link",
+    {
+      navigation__link_color_black: location.pathname !== "/",
+      navigation__link_color_white: location.pathname === "/",
+    },
+    {
+      navigation__link_active: isActive,
+    }
+  );
+
+  const toggleMenu = () => isMenuOpen ? setMenuOpen(false) : setMenuOpen(true);
 
   if (isLoggedIn) {
     return (
       <>
         <nav className='navigation'>
-          <div className='navigation__links-container'>
-            <NavLink
-              to='/'
-              className={({ isActive }) =>
-                clsx(
-                  "navigation__link",
-                  {
-                    navigation__link_color_black: location.pathname !== "/",
-                    navigation__link_color_white: location.pathname === "/",
-                  },
-                  {
-                    navigation__link_active: isActive,
-                  }
-                )
-              }
-            >
-              Главная
-            </NavLink>
-            <NavLink
-              to='/movies'
-              className={({ isActive }) =>
-                clsx(
-                  "navigation__link",
-                  {
-                    navigation__link_color_black: location.pathname !== "/",
-                    navigation__link_color_white: location.pathname === "/",
-                  },
-                  {
-                    navigation__link_active: isActive,
-                  }
-                )
-              }
-            >
-              Фильмы
-            </NavLink>
-            <NavLink
-              to='/saved-movies'
-              className={({ isActive }) =>
-                clsx(
-                  "navigation__link",
-                  {
-                    navigation__link_color_black: location.pathname !== "/",
-                    navigation__link_color_white: location.pathname === "/",
-                  },
-                  {
-                    navigation__link_active: isActive,
-                  }
-                )
-              }
-            >
-              Сохраненные фильмы
-            </NavLink>
+          <div className='navigation__movies-links'>
+            <NavLink to='/movies' className={navLinkClassName}>Фильмы</NavLink>
+            <NavLink to='/saved-movies' className={navLinkClassName}>Сохраненные фильмы</NavLink>
           </div>
-          <Button
-            buttonType={BUTTON_TYPE_CLASSES.account}
-            onClick={() => navigate("/profile")}
-          >
-            Аккаунт
-          </Button>
+          <Button buttonType={BUTTON_TYPE_CLASSES.account} onClick={() => navigate("/profile")}>Аккаунт</Button>
         </nav>
         <Button
           buttonType={BUTTON_TYPE_CLASSES.burger}
@@ -83,37 +44,16 @@ const Navigation = () => {
               ? BUTTON_COLOR_CLASSES.burgerWhite
               : BUTTON_COLOR_CLASSES.burgerBlack
           }
-          onClick={() => {
-            const buttonsContainer = document.querySelector(".navigation");
-            const linksContainer = document.querySelector(
-              ".navigation__links-container"
-            );
-            const burgerBtn = document.querySelector(".button_type_burger");
-            buttonsContainer.classList.toggle("navigation__burger-menu");
-            linksContainer.classList.toggle(
-              "navigation__burger-links-container"
-            );
-            burgerBtn.classList.toggle("button_type_burger_active");
-          }}
+          onClick={toggleMenu}
         />
       </>
     );
-  } else {
+  }
+  if (!isLoggedIn) {
     return (
-      <nav className='navigation__sign-buttons-container'>
-        <Button
-          buttonType={BUTTON_TYPE_CLASSES.link}
-          color={location.pathname === "/" ? "white" : "black"}
-          onClick={() => navigate("/signup")}
-        >
-          Регистрация
-        </Button>
-        <Button
-          buttonType={BUTTON_TYPE_CLASSES.sizeS}
-          onClick={() => navigate("/signin")}
-        >
-          Войти
-        </Button>
+      <nav className='navigation__sign-links'>
+        <Button buttonType={BUTTON_TYPE_CLASSES.link} color={location.pathname === "/" ? "white" : "black"} onClick={() => navigate("/signup")}>Регистрация</Button>
+        <Button buttonType={BUTTON_TYPE_CLASSES.sizeS} onClick={() => navigate("/signin")}>Войти</Button>
       </nav>
     );
   }
