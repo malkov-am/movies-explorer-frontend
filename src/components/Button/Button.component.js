@@ -22,6 +22,8 @@ export const BUTTON_COLOR_CLASSES = {
   ui: "ui",
   burgerBlack: "burger-black",
   burgerWhite: "burger-white",
+  crossBlack: "cross-black",
+  crossWhite: "cross-white",
 };
 
 const Button = ({
@@ -46,6 +48,8 @@ const Button = ({
           button_color_ui: color === "ui",
           "button_color_burger-black": color === "burger-black",
           "button_color_burger-white": color === "burger-white",
+          "button_color_cross-black": color === "cross-black",
+          "button_color_cross-white": color === "cross-white",
         }
       )}
       {...otherProps}

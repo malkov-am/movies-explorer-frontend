@@ -1,19 +1,55 @@
 @import "../../utils/colors";
 
 .navigation {
-  display: none;
+  display: flex;
 
+  @media screen and (max-width: 1023px) {
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 520px;
+    padding: 160px 0 90px 0;
+
+  }
+  @media screen and (max-width: 639px) {
+    padding: 144px 0 35px 0;
+  }
+  
     @media screen and (min-width: 1024px) {
-      display: flex;
       flex-direction: row;
       gap: 50px;
     }
 
+    &_background-color_white {
+      background-color: $color-background-light;
+    }
+
+    &_background-color_grey {
+      background-color: $color-background-dark;
+    }
+
   &__movies-links {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 19px;
+
+    @media screen and (min-width: 639px) and (max-width: 1023px) {
+      gap: 25px;
+    }
+    
+    @media screen and (min-width: 1024px) {
+      display: flex;
+      flex-direction: row;
+      gap: 18px;
+    }
   }
 
   &__sign-links {
@@ -27,14 +63,36 @@
   }
 
   &__link {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 18px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
     text-decoration: none;
+    padding-bottom: 6px;
 
+    @media screen and (min-width: 639px) and (max-width: 1023px) {
+      padding-bottom: 3px;
+    }
+  
+    @media screen and (min-width: 1024px) {
+      padding: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+
+      &:first-child {
+        display: none;
+      }
+    }
+  
     &_active {
-      font-weight: 500;
-
+      border-bottom: 2px solid $color-text;
+      margin-bottom: -2px;
+  
+      @media screen and (min-width: 1024px) {
+        border-bottom: none;
+        margin-bottom: 0;
+        font-weight: 500;
+      }
     }
 
     &_color_white {

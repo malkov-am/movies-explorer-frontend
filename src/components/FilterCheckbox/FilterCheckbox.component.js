@@ -1,10 +1,10 @@
 import React from "react";
 import "./FilterCheckbox.styles.scss";
 
-const Switch = ({ children }) => {
+const FilterCheckbox = ({ children }) => {
   return (
     <>
-      <label class='filter'>
+      <label className='filter'>
         <input className='filter__checkbox' type='checkbox' />
         <span className='filter__pseudo-item' />
         <span className='filter__label-text' />
@@ -14,4 +14,4 @@ const Switch = ({ children }) => {
   );
 };
 
-export default Switch;
+export default FilterCheckbox;
