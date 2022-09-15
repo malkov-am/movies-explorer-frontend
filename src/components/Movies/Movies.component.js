@@ -10,6 +10,7 @@ const Movies = () => {
   return (
     <div className='movies'>
       <SearchForm />
+      {/* <p className='movies__message'>Начните поиск</p> */}
       <MoviesCardList>
         <MoviesCard
           card={{

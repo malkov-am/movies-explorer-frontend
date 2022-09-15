@@ -11,6 +11,7 @@
     padding: 79px 30px 20px 30px;
     gap: 20px;
   }
+
   @media screen and (min-width: 1024px) {
     padding: 79px 70px 20px 70px;
   }
@@ -31,6 +32,7 @@
       line-height: 16px;
       padding: 0 0 20px 0;
     }
+
     @media screen and (min-width: 1024px) {
     }
   }
@@ -48,6 +50,7 @@
       align-content: center;
       gap: 0;
     }
+
     @media screen and (min-width: 1024px) {
     }
   }
@@ -64,6 +67,7 @@
       justify-content: center;
       gap: 20px;
     }
+
     @media screen and (min-width: 1024px) {
     }
   }
@@ -79,8 +83,6 @@
     @media screen and (min-width: 640px) {
       font-size: 13px;
       line-height: 16px;
-    }
-    @media screen and (min-width: 1024px) {
     }
 
     &:last-of-type {

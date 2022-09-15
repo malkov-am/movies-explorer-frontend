@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./Register.styles.scss";
 import Button, {
   BUTTON_COLOR_CLASSES,
   BUTTON_TYPE_CLASSES,

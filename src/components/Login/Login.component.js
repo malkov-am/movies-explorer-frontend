@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./Login.styles.scss";
 import Button, {
   BUTTON_COLOR_CLASSES,
   BUTTON_TYPE_CLASSES,
@@ -12,6 +11,7 @@ const Login = () => {
   // Валидация формы
   const { values, errors, isValid, handleChange, resetForms } =
     useValidation(".sign__form");
+
   // Сброс полей формы при открытии
   useEffect(() => {
     resetForms();

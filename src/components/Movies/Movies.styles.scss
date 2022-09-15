@@ -10,7 +10,25 @@
   @media screen and (min-width: 640px) {
     padding: 70px 30px 80px 30px;
   }
+
   @media screen and (min-width: 1024px) {
     padding: 70px 70px 80px 70px;
+  }
+
+  &__message {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500px;
+    line-height: 26px;
+    letter-spacing: 8px;
+    color: $color-text-light;
+    padding-top: 20px;
+    margin: 0;
+
+    @media screen and (min-width: 640px) {
+      font-size: 18px;
+      line-height: 20px;
+      padding-top: 40px;
+    }
   }
 }
