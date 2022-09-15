@@ -7,7 +7,6 @@ export const BUTTON_TYPE_CLASSES = {
   sizeM: "size-m",
   sizeL: "size-l",
   link: "link",
-  account: "account",
   like: "like",
   dislike: "dislike",
   home: "home",

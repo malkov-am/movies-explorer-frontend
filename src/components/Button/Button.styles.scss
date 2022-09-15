@@ -35,7 +35,7 @@
     background: no-repeat url("../../images/button/button-burger-white.svg");
     width: 38px;
     height: 37px;
-    
+
     @media screen and (min-width: 640px) {
       width: 44px;
       height: 44px;
@@ -49,7 +49,7 @@
     right: 15px;
     width: 30px;
     height: 30px;
-    
+
     @media screen and (min-width: 640px) {
       width: 44px;
       height: 44px;
@@ -63,7 +63,7 @@
     right: 15px;
     width: 30px;
     height: 30px;
-    
+
     @media screen and (min-width: 640px) {
       width: 44px;
       height: 44px;
@@ -149,48 +149,6 @@
     &_disabled {
       pointer-events: none;
       color: $color-text-light;
-    }
-  }
-
-  &_type_account {
-    background: $color-background-light;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 100px;
-    min-height: 32px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    position: relative;
-    padding: 0;
-
-    &::before {
-      content: "";
-      display: inline-block;
-      position: absolute;
-      top: 3px;
-      right: 3px;
-      border-radius: 50%;
-      background: $color-input;
-      width: 26px;
-      height: 26px;
-    }
-
-    &::after {
-      content: "";
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      background: no-repeat url("../../images/button/button-account.svg");
-      z-index: 1;
-    }
-
-    &:active {
-      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
     }
   }
 
