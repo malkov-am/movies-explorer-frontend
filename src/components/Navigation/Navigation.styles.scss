@@ -1,0 +1,143 @@
+@import "../../utils/colors";
+
+.navigation {
+  display: flex;
+
+  @media screen and (max-width: 1023px) {
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 520px;
+    padding: 160px 0 90px 0;
+  }
+  @media screen and (max-width: 639px) {
+    padding: 144px 0 35px 0;
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  &_background-color_white {
+    background-color: $color-background-light;
+  }
+
+  &_background-color_grey {
+    background-color: $color-background-dark;
+  }
+
+  &__movies-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 19px;
+
+    @media screen and (min-width: 639px) and (max-width: 1023px) {
+      gap: 25px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      display: flex;
+      flex-direction: row;
+      gap: 18px;
+    }
+  }
+
+  &__link {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    text-decoration: none;
+    padding-bottom: 6px;
+
+    @media screen and (min-width: 639px) and (max-width: 1023px) {
+      padding-bottom: 3px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      padding: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+
+      &:first-child {
+        display: none;
+      }
+    }
+
+    &_active {
+      border-bottom: 2px solid $color-text;
+      margin-bottom: -2px;
+
+      @media screen and (min-width: 1024px) {
+        border-bottom: none;
+        margin-bottom: 0;
+        font-weight: 500;
+      }
+    }
+
+    &_color_white {
+      color: $color-text-inverted;
+    }
+
+    &_color_black {
+      color: $color-text;
+    }
+  }
+
+  &__link-account {
+    background: $color-background-light;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 100px;
+    min-height: 32px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    padding: 0;
+    text-decoration: none;
+    color: $color-text;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      border-radius: 50%;
+      background: $color-input;
+      width: 26px;
+      height: 26px;
+    }
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: no-repeat url("../../images/button/button-account.svg");
+      z-index: 1;
+    }
+
+    &:active {
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    &_active {
+      font-weight: 500;
+    }
+  }
+}

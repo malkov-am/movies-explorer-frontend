@@ -1,0 +1,27 @@
+@import "../../utils/colors";
+
+.landing-header {
+  border-bottom: solid $color-text 1px;
+  width: 100%;
+  margin-bottom: 60px;
+
+  @media screen and (min-width: 640px) {
+    margin-bottom: 69px;
+  }
+
+  &__title {
+    color: $color-text;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    margin: 0;
+    padding-bottom: 28px;
+
+    @media screen and (min-width: 640px) {
+      font-size: 22px;
+      line-height: 27px;
+      padding-bottom: 23px;
+    }
+  }
+}

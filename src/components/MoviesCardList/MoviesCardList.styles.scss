@@ -1,0 +1,22 @@
+@import "../../utils/colors";
+
+.movies-card-list {
+  padding: 50px 0 80px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 364px));
+  row-gap: 16px;
+  justify-content: center;
+  justify-items: center;
+  width: 100%;
+
+  @media screen and (min-width: 640px) {
+    padding: 80px 0;
+    column-gap: 30px;
+    row-gap: 36px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    column-gap: 24px;
+    row-gap: 30px;
+  }
+}

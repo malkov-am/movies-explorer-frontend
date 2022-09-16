@@ -1,0 +1,115 @@
+@import "../../utils/colors";
+
+.about {
+  padding: 71px 18px 59px 18px;
+
+  @media screen and (min-width: 640px) {
+    padding: 90px 50px 86px 50px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 110px 70px 105px 70px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 57px;
+    padding-bottom: 60px;
+
+    @media screen and (min-width: 640px) {
+      flex-direction: row;
+      gap: 37px;
+      padding-bottom: 93px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      gap: 52px;
+      padding-bottom: 110px;
+    }
+  }
+
+  &__subtitle {
+    color: $color-text;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    margin: 0;
+    padding-bottom: 15px;
+
+    @media screen and (min-width: 640px) {
+      padding-bottom: 22px;
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      padding-bottom: 26px;
+    }
+  }
+
+  &__text {
+    color: $color-text;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    margin: 0;
+    @media screen and (min-width: 640px) {
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 1fr 1.84fr;
+
+  @media screen and (min-width: 640px) {
+    grid-template-columns: 1fr 4fr;
+  }
+
+  &__cell {
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width: 640px) {
+      height: 36px;
+    }
+  }
+
+  &__cell_highlighted {
+    background-color: $color-ui;
+  }
+
+  &__cell_filled {
+    background-color: $color-bar;
+  }
+
+  &__caption {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+
+    @media screen and (min-width: 640px) {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+
+  &__caption_dark {
+    color: $color-text;
+  }
+
+  &__caption_light {
+    color: $color-placeholder;
+  }
+}
