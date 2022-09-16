@@ -10,14 +10,16 @@ const SearchForm = () => {
   return (
     <div className='search'>
       <div className='search__container'>
-        <form className='search__form'>
+        <form className='search__form' noValidate>
           <input
             className='search__form-input'
             type='text'
+            required
             placeholder='Фильм'
           />
           <Button
             buttonType={BUTTON_TYPE_CLASSES.sizeM}
+            type='submit'
             color={BUTTON_COLOR_CLASSES.white}
           >
             Поиск

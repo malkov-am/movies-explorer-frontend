@@ -51,7 +51,7 @@ const Header = () => {
 
   if (routesWithHeader.includes(location.pathname)) {
     return (
-      <div
+      <header
         className={clsx("header", {
           header_color_gray: location.pathname === "/",
           header_color_white: location.pathname !== "/",
@@ -59,6 +59,7 @@ const Header = () => {
       >
         <Button
           buttonType={BUTTON_TYPE_CLASSES.home}
+          type='button'
           onClick={() => navigate("/")}
         />
         {isLoggedIn ? (
@@ -72,6 +73,7 @@ const Header = () => {
             )}
             <Button
               buttonType={BUTTON_TYPE_CLASSES.burger}
+              type='button'
               color={menuButtonIcon}
               onClick={toggleMenu}
             />
@@ -80,6 +82,7 @@ const Header = () => {
           <nav className='header__sign-links'>
             <Button
               buttonType={BUTTON_TYPE_CLASSES.link}
+              type='button'
               color={location.pathname === "/" ? "white" : "black"}
               onClick={() => navigate("/signup")}
             >
@@ -87,13 +90,14 @@ const Header = () => {
             </Button>
             <Button
               buttonType={BUTTON_TYPE_CLASSES.sizeS}
+              type='button'
               onClick={() => navigate("/signin")}
             >
               Войти
             </Button>
           </nav>
         )}
-      </div>
+      </header>
     );
   }
   return null;

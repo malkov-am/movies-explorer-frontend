@@ -10,6 +10,7 @@ const SignForm = ({ title, children }) => {
     <div className='sign'>
       <Button
         buttonType={BUTTON_TYPE_CLASSES.home}
+        type='button'
         onClick={() => navigate("/")}
       />
       <h2 className='sign__title'>{title}</h2>

@@ -57,3 +57,7 @@
     }
   }
 }
+
+.search__form:has(.search__form-input:focus) {
+  border-color: $color-text;
+}

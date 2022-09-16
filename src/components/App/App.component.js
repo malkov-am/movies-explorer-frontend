@@ -15,15 +15,17 @@ const App = () => {
   return (
     <div className='app'>
       <Header />
-      <Routes>
-        <Route exact path='/' element={<Main />} />
-        <Route exact path='/movies' element={<Movies />} />
-        <Route exact path='/saved-movies' element={<SavedMovies />} />
-        <Route exact path='/profile' element={<Profile />} />
-        <Route exact path='/signin' element={<Login />} />
-        <Route exact path='/signup' element={<Register />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route exact path='/' element={<Main />} />
+          <Route exact path='/movies' element={<Movies />} />
+          <Route exact path='/saved-movies' element={<SavedMovies />} />
+          <Route exact path='/profile' element={<Profile />} />
+          <Route exact path='/signin' element={<Login />} />
+          <Route exact path='/signup' element={<Register />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </main>
       <Footer />
     </div>
   );

@@ -26,6 +26,12 @@
     }
   }
 
+  &__links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
   &__link {
     text-decoration: none;
     color: $color-text;

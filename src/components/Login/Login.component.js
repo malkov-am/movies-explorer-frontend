@@ -52,6 +52,7 @@ const Login = () => {
       <div className='sign__form-buttons'>
         <Button
           buttonType={BUTTON_TYPE_CLASSES.sizeL}
+          type='submit'
           color={BUTTON_COLOR_CLASSES.white}
           isDisabled={!isValid}
         >

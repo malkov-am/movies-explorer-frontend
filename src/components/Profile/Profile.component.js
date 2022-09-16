@@ -62,6 +62,7 @@ const Profile = () => {
         <div className='profile__buttons-container'>
           <Button
             buttonType={BUTTON_TYPE_CLASSES.link}
+            type='submit'
             color={BUTTON_COLOR_CLASSES.black}
             isDisabled={!isValid}
           >
@@ -69,6 +70,7 @@ const Profile = () => {
           </Button>
           <Button
             buttonType={BUTTON_TYPE_CLASSES.link}
+            type='button'
             color={BUTTON_COLOR_CLASSES.pink}
           >
             Выйти из аккаунта

@@ -8,7 +8,7 @@ const Footer = () => {
 
   if (routesWithFooter.includes(location.pathname)) {
     return (
-      <div className='footer'>
+      <footer className='footer'>
         <p className='footer__copyright'>
           Учебный проект Яндекс.Практикум х BeatFilm.
         </p>
@@ -33,7 +33,7 @@ const Footer = () => {
           </div>
           <p className='footer__year'>&copy;2020</p>
         </div>
-      </div>
+      </footer>
     );
   }
   return null;

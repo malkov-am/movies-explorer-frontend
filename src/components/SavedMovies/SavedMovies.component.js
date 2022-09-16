@@ -36,7 +36,9 @@ const SavedMovies = () => {
           }}
         />
       </MoviesCardList>
-      <Button buttonType={BUTTON_TYPE_CLASSES.more}>Еще</Button>
+      <Button buttonType={BUTTON_TYPE_CLASSES.more} type='button'>
+        Еще
+      </Button>
     </div>
   );
 };

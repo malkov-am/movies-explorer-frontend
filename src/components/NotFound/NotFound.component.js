@@ -16,6 +16,7 @@ const NotFound = () => {
         <p className='not-found__message'>Страница не неайдена</p>
         <Button
           buttonType={BUTTON_TYPE_CLASSES.link}
+          type='button'
           color={BUTTON_COLOR_CLASSES.ui}
           onClick={() => navigate(-1)}
         >
