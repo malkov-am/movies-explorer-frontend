@@ -109,6 +109,13 @@
       width: 100px;
       height: 52px;
     }
+
+    &_disabled {
+      pointer-events: none;
+      background: $color-background-light;
+      color: $color-text-light;
+      border: 1px solid $color-text-light;
+    }
   }
 
   &_type_size-l {

@@ -49,7 +49,7 @@ const Header = () => {
     console.log("123");
   };
 
-  if (routesWithHeader.includes(location.pathname)) {
+  if (routesWithHeader.includes(location.pathname.toLowerCase())) {
     return (
       <header
         className={clsx("header", {

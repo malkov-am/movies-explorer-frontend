@@ -6,7 +6,7 @@ const Footer = () => {
   const location = useLocation();
   const routesWithFooter = ["/", "/movies", "/saved-movies"];
 
-  if (routesWithFooter.includes(location.pathname)) {
+  if (routesWithFooter.includes(location.pathname.toLowerCase())) {
     return (
       <footer className='footer'>
         <p className='footer__copyright'>

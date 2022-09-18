@@ -14,11 +14,7 @@
   }
 
   &__container {
-    padding-bottom: 30px;
-
-    @media screen and (min-width: 640px) {
-      padding-bottom: 27px;
-    }
+    padding-bottom: 6px;
   }
 
   &__form {
@@ -54,6 +50,21 @@
 
     &:focus {
       outline: none;
+    }
+  }
+
+  &__form-err-message {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 12px;
+    margin: 0 0 12px 0;
+    color: $color-error;
+    height: 12px;
+    width: 100%;
+    overflow: hidden;
+
+    @media screen and (min-width: 640px) {
+      margin: 0 0 3px 0;
     }
   }
 }

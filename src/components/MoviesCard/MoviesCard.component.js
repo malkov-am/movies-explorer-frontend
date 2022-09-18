@@ -1,6 +1,7 @@
 import React from "react";
 import "./MoviesCard.styles.scss";
 import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
+import { BASE_URL } from "../../utils/MoviesApi";
 
 const MoviesCard = ({ card, isLiked }) => {
   const { nameRU, duration, image } = card;
@@ -37,7 +38,7 @@ const MoviesCard = ({ card, isLiked }) => {
         </div>
         {cardButton}
       </div>
-      <img className='card__img' src={image} alt={nameRU} />
+      <img className='card__img' src={BASE_URL + image.url} alt={nameRU} />
     </article>
   );
 };

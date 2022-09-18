@@ -32,7 +32,6 @@ export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   }).then((res) => handleResponse(res));
@@ -56,7 +55,6 @@ export const getSavedMovies = (token) => {
     method: "GET",
     headers: {
       authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
     },
   }).then((res) => handleResponse(res));
 };
@@ -79,7 +77,6 @@ export const deleteMovie = (movieId, token) => {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
     },
   }).then((res) => handleResponse(res));
 };
