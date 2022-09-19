@@ -21,7 +21,7 @@
     height: 56px;
     border-radius: 8px;
     padding: 0 6px;
-    border: 1.5px solid $color-border;
+    border: 1.5px solid $color-underline;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -70,5 +70,5 @@
 }
 
 .search__form:has(.search__form-input:focus) {
-  border-color: $color-text;
+  border-color: $color-border;
 }

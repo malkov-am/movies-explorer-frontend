@@ -1,23 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Profile.styles.scss";
 import Button, {
   BUTTON_COLOR_CLASSES,
   BUTTON_TYPE_CLASSES,
 } from "../Button/Button.component";
 import useValidation from "../../hooks/useValidation";
+import { UserContext } from "../../contexts/User.context";
 
-const Profile = () => {
+const Profile = ({ onLogout }) => {
+    // Подписка на контекст
+  const { currentUser } = useContext(UserContext);
+  const { name } = currentUser;
   // Валидация формы
   const { values, errors, isValid, handleChange, resetForms } =
     useValidation(".profile__form");
   // Сброс полей формы при открытии
+  // Подстановка данных в форму
   useEffect(() => {
-    resetForms();
-  }, [resetForms]);
+    currentUser && resetForms(currentUser, {}, true);
+  }, [currentUser, resetForms]);
 
   return (
     <div className='profile'>
-      <h2 className='profile__title'>Привет, Виталий!</h2>
+      <h2 className='profile__title'>Привет, {name}!</h2>
       <form className='profile__form' noValidate>
         <div className='profile__form-inputs'>
           <div className='profile__input-container'>
@@ -33,7 +38,6 @@ const Profile = () => {
                 required
                 minLength='2'
                 maxLength='30'
-                placeholder='Виталий'
                 onChange={handleChange}
                 value={values.name || ""}
               />
@@ -51,7 +55,6 @@ const Profile = () => {
                 className='profile__form-input'
                 type='email'
                 required
-                placeholder='pochta@yandex.ru'
                 onChange={handleChange}
                 value={values.email || ""}
               />
@@ -72,6 +75,7 @@ const Profile = () => {
             buttonType={BUTTON_TYPE_CLASSES.link}
             type='button'
             color={BUTTON_COLOR_CLASSES.pink}
+            onClick={onLogout}
           >
             Выйти из аккаунта
           </Button>

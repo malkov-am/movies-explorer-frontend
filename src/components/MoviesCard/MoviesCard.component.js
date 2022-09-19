@@ -4,9 +4,15 @@ import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 import { BASE_URL } from "../../utils/MoviesApi";
 
 const MoviesCard = ({ card, isLiked }) => {
-  const { nameRU, duration, image } = card;
-  let cardButton;
+  const { nameRU, duration, image, trailerLink } = card;
 
+  const convertedDuration = (() => {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration - hours * 60;
+    return `${hours}ч ${minutes}м`
+  })();
+
+  let cardButton;
   if (isLiked) {
     cardButton = (
       <Button
@@ -34,11 +40,13 @@ const MoviesCard = ({ card, isLiked }) => {
       <div className='card__container'>
         <div className='card__title-container'>
           <h3 className='card__title'>{nameRU}</h3>
-          <p className='card__duration'>{duration}</p>
+          <p className='card__duration'>{convertedDuration}</p>
         </div>
         {cardButton}
       </div>
-      <img className='card__img' src={BASE_URL + image.url} alt={nameRU} />
+      <a href={trailerLink} target='_blank' rel='noreferrer'>
+        <img className='card__img' src={BASE_URL + image.url} alt={nameRU} />
+      </a>
     </article>
   );
 };

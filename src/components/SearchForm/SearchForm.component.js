@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "./SearchForm.styles.scss";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.component";
 import Button, {
   BUTTON_COLOR_CLASSES,
   BUTTON_TYPE_CLASSES,
 } from "../Button/Button.component";
+import { MoviesContext } from "../../contexts/Movies.context";
 
 const SearchForm = ({ onSubmit }) => {
-  const [search, setSearch] = useState("");
+  const { keyword, setKeyword } = useContext(MoviesContext);
 
   const handleChangeSearch = (evt) => {
-    setSearch(evt.target.value);
+    setKeyword(evt.target.value);
   };
 
   const handleSearch = (evt) => {
     evt.preventDefault();
-    onSubmit(search);
+    onSubmit();
   };
 
   return (
@@ -35,7 +36,7 @@ const SearchForm = ({ onSubmit }) => {
             required
             placeholder='Фильм'
             onChange={handleChangeSearch}
-            value={search}
+            value={keyword}
           />
           <Button
             buttonType={BUTTON_TYPE_CLASSES.sizeM}

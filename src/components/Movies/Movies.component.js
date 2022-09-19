@@ -6,16 +6,16 @@ import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 import MoviesCard from "../MoviesCard/MoviesCard.component";
 import { MoviesContext } from "../../contexts/Movies.context";
 
-const Movies = ({ searchMovies }) => {
-  const { movies } = useContext(MoviesContext);
+const Movies = ({ onSearch }) => {
+  const { movies, filteredMovies } = useContext(MoviesContext);
 
-  const cardsElements = movies.map((card) => (
+  const cardsElements = filteredMovies.map((card) => (
     <MoviesCard card={card} key={card.id} />
   ));
 
   return (
     <div className='movies'>
-      <SearchForm onSubmit={searchMovies} />
+      <SearchForm onSubmit={onSearch} />
       {/* <p className='movies__message'>Начните поиск</p> */}
       <MoviesCardList>
         {cardsElements}
@@ -26,8 +26,11 @@ const Movies = ({ searchMovies }) => {
             image: imgPath,
           }}
         /> */}
-      </MoviesCardList>
-      <Button buttonType={BUTTON_TYPE_CLASSES.more} type='button'>
+      </MoviesCardList> 
+      <Button buttonType={BUTTON_TYPE_CLASSES.more} type='button' onClick={() => {
+        console.log(movies);
+        console.log(filteredMovies);
+      }}>
         Еще
       </Button>
     </div>

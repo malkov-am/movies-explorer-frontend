@@ -7,7 +7,7 @@ import SignForm from "../SignForm/SignForm.component";
 import { Link } from "react-router-dom";
 import useValidation from "../../hooks/useValidation";
 
-const Register = () => {
+const Register = ({ onRegister }) => {
   // Валидация формы
   const { values, errors, isValid, handleChange, resetForms } =
     useValidation(".sign__form");
@@ -15,6 +15,11 @@ const Register = () => {
   useEffect(() => {
     resetForms();
   }, [resetForms]);
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    onRegister({ name: values.name, email: values.email, password: values.password });
+  }
 
   return (
     <SignForm title='Добро пожаловать!'>
@@ -69,6 +74,7 @@ const Register = () => {
           type='submit'
           color={BUTTON_COLOR_CLASSES.white}
           isDisabled={!isValid}
+          onClick={handleSubmit}
         >
           Зарегистрироваться
         </Button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Header.styles.scss";
 import Button, {
   BUTTON_COLOR_CLASSES,
@@ -8,11 +8,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import clsx from "clsx";
 import Navigation from "../Navigation/Navigation.component";
+import { UserContext } from "../../contexts/User.context";
 
 const Header = () => {
   // Переменные состояния
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const isLoggedIn = true;
+
+  // Подписка на контекст
+  const { isLoggedIn } = useContext(UserContext);
 
   // Хуки
   const location = useLocation();
@@ -46,7 +49,6 @@ const Header = () => {
   // Обработчик закрытия меню при переходе по ссылке
   const handleLinkClick = () => {
     setMenuOpen(false);
-    console.log("123");
   };
 
   if (routesWithHeader.includes(location.pathname.toLowerCase())) {
