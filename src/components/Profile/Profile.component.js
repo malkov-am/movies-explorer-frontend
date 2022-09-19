@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Profile.styles.scss";
 import Button, {
   BUTTON_COLOR_CLASSES,
@@ -7,18 +7,34 @@ import Button, {
 import useValidation from "../../hooks/useValidation";
 import { UserContext } from "../../contexts/User.context";
 
-const Profile = ({ onLogout }) => {
-    // Подписка на контекст
+const Profile = ({ onLogout, onUpdateProfile }) => {
+  // Переменные состояния
+  const [isUserDataChanged, setUserDataChanged] = useState(false);
+  // Подписка на контекст
   const { currentUser } = useContext(UserContext);
-  const { name } = currentUser;
+  const { name, email } = currentUser;
+
   // Валидация формы
-  const { values, errors, isValid, handleChange, resetForms } =
+  const { values, errors, handleChange, resetForms } =
     useValidation(".profile__form");
-  // Сброс полей формы при открытии
+
+  // Изменились ли данные в форме
+  useEffect(() => {
+    values.name === name && values.email === email
+      ? setUserDataChanged(false)
+      : setUserDataChanged(true);
+  }, [values]);
+
   // Подстановка данных в форму
   useEffect(() => {
     currentUser && resetForms(currentUser, {}, true);
   }, [currentUser, resetForms]);
+
+  // Обработчик обновления профиля
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    onUpdateProfile({ name: values.name, email: values.email });
+  };
 
   return (
     <div className='profile'>
@@ -67,7 +83,8 @@ const Profile = ({ onLogout }) => {
             buttonType={BUTTON_TYPE_CLASSES.link}
             type='submit'
             color={BUTTON_COLOR_CLASSES.black}
-            isDisabled={!isValid}
+            isDisabled={!isUserDataChanged}
+            onClick={handleSubmit}
           >
             Редактировать
           </Button>

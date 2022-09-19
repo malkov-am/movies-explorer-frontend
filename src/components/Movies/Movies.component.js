@@ -26,11 +26,15 @@ const Movies = ({ onSearch }) => {
             image: imgPath,
           }}
         /> */}
-      </MoviesCardList> 
-      <Button buttonType={BUTTON_TYPE_CLASSES.more} type='button' onClick={() => {
-        console.log(movies);
-        console.log(filteredMovies);
-      }}>
+      </MoviesCardList>
+      <Button
+        buttonType={BUTTON_TYPE_CLASSES.more}
+        type='button'
+        onClick={() => {
+          console.log(movies);
+          console.log(filteredMovies);
+        }}
+      >
         Еще
       </Button>
     </div>

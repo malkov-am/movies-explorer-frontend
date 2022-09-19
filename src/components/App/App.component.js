@@ -12,7 +12,12 @@ import Register from "../Register/Register.component";
 import NotFound from "../NotFound/NotFound.component";
 import { getMovies } from "../../utils/MoviesApi";
 import { MoviesContext } from "../../contexts/Movies.context";
-import { authorize, register, checkToken } from "../../utils/MainApi";
+import {
+  authorize,
+  register,
+  checkToken,
+  updateProfile,
+} from "../../utils/MainApi";
 import { UserContext } from "../../contexts/User.context";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
@@ -90,10 +95,17 @@ const App = () => {
     navigate("/");
   }
 
+  // Обработчик обновления профиля
+  function handleUpdateProfile(userData) {
+    updateProfile(userData, token)
+      .then((updatedUserData) => setCurrentUser(updatedUserData))
+      .catch((err) => handleError(err));
+  }
+
   return (
     <div className='app'>
       <Header />
-      <main>
+      <main className='main'>
         <Routes>
           <Route exact path='/' element={<Main />} />
           <Route
@@ -119,7 +131,10 @@ const App = () => {
             path='/profile'
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <Profile onLogout={handleLogout} />
+                <Profile
+                  onLogout={handleLogout}
+                  onUpdateProfile={handleUpdateProfile}
+                />
               </ProtectedRoute>
             }
           />
