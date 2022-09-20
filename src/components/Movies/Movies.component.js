@@ -7,7 +7,14 @@ import MoviesCard from "../MoviesCard/MoviesCard.component";
 import { MoviesContext } from "../../contexts/Movies.context";
 
 const Movies = ({ onSearch, onLike, onDislike }) => {
-  const { state, filteredMovies } = useContext(MoviesContext);
+  const {
+    state,
+    filteredMovies,
+    moviesKeyword,
+    setMoviesKeyword,
+    moviesIsShort,
+    setMoviesIsShort,
+  } = useContext(MoviesContext);
 
   const cardsElements = filteredMovies.map((card) => (
     <MoviesCard
@@ -15,13 +22,19 @@ const Movies = ({ onSearch, onLike, onDislike }) => {
       key={card.id}
       onLike={onLike}
       onDislike={onDislike}
-      buttonType="like"
+      buttonType='like'
     />
   ));
 
   return (
     <div className='movies'>
-      <SearchForm onSubmit={onSearch} />
+      <SearchForm
+        onSubmit={onSearch}
+        keyword={moviesKeyword}
+        setKeyword={setMoviesKeyword}
+        isShort={moviesIsShort}
+        setIsShort={setMoviesIsShort}
+      />
       {/* <p className='movies__message'>Начните поиск</p> */}
       <MoviesCardList>
         {cardsElements}

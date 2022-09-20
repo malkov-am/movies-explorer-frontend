@@ -29,8 +29,7 @@ const App = () => {
   const {
     movies,
     setMovies,
-    filteredMoviesList,
-    setFilteredMovies,
+    filterMovies,
     setSavedMovies,
     addMovieToSaved,
     removeMovieFromSaved,
@@ -81,7 +80,7 @@ const App = () => {
         })
         .catch((err) => handleError(err));
     } else {
-      setFilteredMovies(filteredMoviesList);
+      filterMovies();
     }
   }
 
@@ -144,6 +143,7 @@ const App = () => {
 
   // Обработчик удаления фильма из сохраненных
   function handleDislike(savedMovie) {
+    console.log(savedMovie);
     deleteMovie(savedMovie._id, token)
       .then(() => removeMovieFromSaved(savedMovie))
       .catch((err) => handleError(err));
@@ -173,7 +173,7 @@ const App = () => {
             path='/saved-movies'
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <SavedMovies />
+                <SavedMovies onDislike={handleDislike} />
               </ProtectedRoute>
             }
           />

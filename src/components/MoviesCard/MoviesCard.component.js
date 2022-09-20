@@ -17,14 +17,17 @@ const MoviesCard = ({ card, onLike, onDislike, buttonType }) => {
   })();
 
   // Проверка, сохранена ли карточка
-  const savedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === id);
-  const isLiked = (() => savedMovie ? true : false)();
+  const savedMovie = savedMovies.find(
+    (savedMovie) => savedMovie.movieId === id
+  );
+  const isLiked = (() => (savedMovie ? true : false))();
 
   // Обработчик кнопки сохранения / удаления фильма
-  const handleLikeClick = () => (isLiked ? onDislike(savedMovie) : onLike(card));
+  const handleLikeClick = () =>
+    isLiked ? onDislike(savedMovie) : onLike(card);
 
   // Обработчик кнопки удаления фильма
-  const handleDislikeClick = () => onDislike(savedMovie);
+  const handleDislikeClick = () => onDislike(card);
 
   let cardButton;
   if (buttonType === "dislike") {
@@ -56,7 +59,11 @@ const MoviesCard = ({ card, onLike, onDislike, buttonType }) => {
         {cardButton}
       </div>
       <a href={trailerLink} target='_blank' rel='noreferrer'>
-        <img className='card__img' src={BASE_URL + image.url} alt={nameRU} />
+        <img
+          className='card__img'
+          src={image.url ? BASE_URL + image.url : image}
+          alt={nameRU}
+        />
       </a>
     </article>
   );

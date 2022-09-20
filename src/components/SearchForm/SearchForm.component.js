@@ -1,15 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./SearchForm.styles.scss";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.component";
 import Button, {
   BUTTON_COLOR_CLASSES,
   BUTTON_TYPE_CLASSES,
 } from "../Button/Button.component";
-import { MoviesContext } from "../../contexts/Movies.context";
 
-const SearchForm = ({ onSubmit }) => {
-  const { keyword, setKeyword } = useContext(MoviesContext);
-
+const SearchForm = ({ onSubmit, keyword, setKeyword, isShort, setIsShort }) => {
   const handleChangeSearch = (evt) => {
     setKeyword(evt.target.value);
   };
@@ -48,7 +45,9 @@ const SearchForm = ({ onSubmit }) => {
         </form>
       </div>
       <p className='search__form-err-message'>Нужно ввести ключевое слово</p>
-      <FilterCheckbox>Короткометражки</FilterCheckbox>
+      <FilterCheckbox isShort={isShort} setIsShort={setIsShort}>
+        Короткометражки
+      </FilterCheckbox>
     </div>
   );
 };

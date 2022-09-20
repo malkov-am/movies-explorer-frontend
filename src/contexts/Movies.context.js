@@ -3,18 +3,24 @@ import { createAction } from "../utils/reducer";
 
 export const MOVIES_ACTION_TYPES = {
   SET_MOVIES: "SET_MOVIES",
-  SET_KEYWORD: "SET_KEYWORD",
-  SET_IS_SHORT: "SET_IS_SHORT",
   SET_FILTERED_MOVIES: "SET_FILTERED_MOVIES",
+  SET_MOVIES_KEYWORD: "SET_MOVIES_KEYWORD",
+  SET_MOVIES_IS_SHORT: "SET_MOVIES_IS_SHORT",
   SET_SAVED_MOVIES: "SET_SAVED_MOVIES",
+  SET_FILTERED_SAVED_MOVIES: "SET_FILTERED_SAVED_MOVIES",
+  SET_SAVED_MOVIES_KEYWORD: "SET_SAVED_MOVIES_KEYWORD",
+  SET_SAVED_MOVIES_IS_SHORT: "SET_SAVED_MOVIES_IS_SHORT",
 };
 
 const INITIAL_STATE = {
   movies: [],
   filteredMovies: [],
+  moviesKeyword: "",
+  moviesIsShort: false,
   savedMovies: [],
-  keyword: "",
-  isShort: false,
+  filteredSavedMovies: [],
+  savedMoviesKeyword: "",
+  savedMoviesIsShort: false,
 };
 
 const moviesReducer = (state, action) => {
@@ -26,29 +32,47 @@ const moviesReducer = (state, action) => {
         ...state,
         movies: payload,
       };
-    case "SET_KEYWORD":
-      console.log("SET_KEYWORD FIRED");
-      return {
-        ...state,
-        keyword: payload,
-      };
-    case "SET_IS_SHORT":
-      console.log("SET_IS_SHORT FIRED", payload);
-      return {
-        ...state,
-        isShort: payload,
-      };
     case "SET_FILTERED_MOVIES":
       console.log("SET_FILTERED_MOVIES FIRED");
       return {
         ...state,
         filteredMovies: payload,
       };
+    case "SET_MOVIES_KEYWORD":
+      console.log("SET_MOVIES_KEYWORD FIRED");
+      return {
+        ...state,
+        moviesKeyword: payload,
+      };
+    case "SET_MOVIES_IS_SHORT":
+      console.log("SET_MOVIES_IS_SHORT FIRED", payload);
+      return {
+        ...state,
+        moviesIsShort: payload,
+      };
     case "SET_SAVED_MOVIES":
       console.log("SET_SAVED_MOVIES FIRED");
       return {
         ...state,
         savedMovies: payload,
+      };
+    case "SET_FILTERED_SAVED_MOVIES":
+      console.log("SET_FILTERED_SAVED_MOVIES FIRED");
+      return {
+        ...state,
+        filteredSavedMovies: payload,
+      };
+    case "SET_SAVED_MOVIES_KEYWORD":
+      console.log("SET_SAVED_MOVIES_KEYWORD FIRED");
+      return {
+        ...state,
+        savedMoviesKeyword: payload,
+      };
+    case "SET_SAVED_MOVIES_IS_SHORT":
+      console.log("SET_SAVED_MOVIES_IS_SHORT FIRED", payload);
+      return {
+        ...state,
+        savedMoviesIsShort: payload,
       };
 
     default:
@@ -60,11 +84,20 @@ export const MoviesContext = createContext();
 
 export const MoviesProvider = ({ children }) => {
   const [state, dispath] = useReducer(moviesReducer, INITIAL_STATE);
-  const { movies, filteredMovies, keyword, isShort, savedMovies } = state;
+  const {
+    movies,
+    filteredMovies,
+    moviesKeyword,
+    moviesIsShort,
+    savedMovies,
+    filteredSavedMovies,
+    savedMoviesKeyword,
+    savedMoviesIsShort,
+  } = state;
 
-  const filteredMoviesList = (() => {
+  const filter = (movies, keyword) => {
     return movies.filter((movie) => {
-      if (isShort) {
+      if (moviesIsShort) {
         return (
           movie.nameRU.toLowerCase().includes(keyword.toLowerCase()) &&
           movie.duration <= 40
@@ -73,28 +106,46 @@ export const MoviesProvider = ({ children }) => {
         return movie.nameRU.toLowerCase().includes(keyword.toLowerCase());
       }
     });
-  })();
+  };
 
   useEffect(() => {
-    setFilteredMovies(filteredMoviesList);
-  }, [movies, isShort]);
+    filterMovies();
+  }, [movies, moviesIsShort]);
 
   const setMovies = (movies) => {
     dispath(createAction(MOVIES_ACTION_TYPES.SET_MOVIES, movies));
-  };
-  const setKeyword = (keyword) => {
-    dispath(createAction(MOVIES_ACTION_TYPES.SET_KEYWORD, keyword));
-  };
-  const setIsShort = (boolean) => {
-    dispath(createAction(MOVIES_ACTION_TYPES.SET_IS_SHORT, boolean));
   };
   const setFilteredMovies = (filteredMovies) => {
     dispath(
       createAction(MOVIES_ACTION_TYPES.SET_FILTERED_MOVIES, filteredMovies)
     );
   };
+  const setMoviesKeyword = (keyword) => {
+    dispath(createAction(MOVIES_ACTION_TYPES.SET_MOVIES_KEYWORD, keyword));
+  };
+  const setMoviesIsShort = (boolean) => {
+    dispath(createAction(MOVIES_ACTION_TYPES.SET_MOVIES_IS_SHORT, boolean));
+  };
   const setSavedMovies = (savedMovies) => {
     dispath(createAction(MOVIES_ACTION_TYPES.SET_SAVED_MOVIES, savedMovies));
+  };
+  const setFilteredSavedMovies = (filteredMovies) => {
+    dispath(
+      createAction(
+        MOVIES_ACTION_TYPES.SET_FILTERED_SAVED_MOVIES,
+        filteredMovies
+      )
+    );
+  };
+  const setSavedMoviesKeyword = (keyword) => {
+    dispath(
+      createAction(MOVIES_ACTION_TYPES.SET_SAVED_MOVIES_KEYWORD, keyword)
+    );
+  };
+  const setSavedMoviesIsShort = (boolean) => {
+    dispath(
+      createAction(MOVIES_ACTION_TYPES.SET_SAVED_MOVIES_IS_SHORT, boolean)
+    );
   };
   const addMovieToSaved = (movieToAdd) => {
     setSavedMovies([...savedMovies, movieToAdd]);
@@ -104,20 +155,30 @@ export const MoviesProvider = ({ children }) => {
       savedMovies.filter((movie) => movie.movieId !== movieToRemove.movieId)
     );
   };
+  const filterMovies = () => {
+    const filteredMovies = filter(movies, moviesKeyword);
+    setFilteredMovies(filteredMovies);
+  };
 
   const value = {
     state,
     movies,
     setMovies,
+    filterMovies,
     filteredMovies,
-    filteredMoviesList,
     setFilteredMovies,
-    keyword,
-    setKeyword,
-    isShort,
-    setIsShort,
+    moviesKeyword,
+    setMoviesKeyword,
+    moviesIsShort,
+    setMoviesIsShort,
     savedMovies,
     setSavedMovies,
+    filteredSavedMovies,
+    setFilteredSavedMovies,
+    savedMoviesKeyword,
+    setSavedMoviesKeyword,
+    savedMoviesIsShort,
+    setSavedMoviesIsShort,
     addMovieToSaved,
     removeMovieFromSaved,
   };
