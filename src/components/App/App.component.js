@@ -10,21 +10,31 @@ import Profile from "../Profile/Profile.component";
 import Login from "../Login/Login.component";
 import Register from "../Register/Register.component";
 import NotFound from "../NotFound/NotFound.component";
-import { getMovies } from "../../utils/MoviesApi";
+import { BASE_URL, getMovies } from "../../utils/MoviesApi";
 import { MoviesContext } from "../../contexts/Movies.context";
 import {
   authorize,
   register,
   checkToken,
   updateProfile,
+  getSavedMovies,
+  saveMovie,
+  deleteMovie,
 } from "../../utils/MainApi";
 import { UserContext } from "../../contexts/User.context";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   // Подписка на контекст
-  const { movies, setMovies, filteredMoviesList, setFilteredMovies } =
-    useContext(MoviesContext);
+  const {
+    movies,
+    setMovies,
+    filteredMoviesList,
+    setFilteredMovies,
+    setSavedMovies,
+    addMovieToSaved,
+    removeMovieFromSaved,
+  } = useContext(MoviesContext);
   const { isLoggedIn, setIsLoggedIn, setCurrentUser } = useContext(UserContext);
 
   // Хуки
@@ -56,11 +66,19 @@ const App = () => {
     console.error(err);
   }
 
+  // Запросы к серверам для получения списка всех фильмов и сохраненных фильмов
+  function getMoviesData() {
+    return Promise.all([getMovies(), getSavedMovies(token)]);
+  }
+
   // Обработчик поиска фильмов
   function handleSearchMovies() {
     if (movies.length === 0) {
-      getMovies()
-        .then((movies) => setMovies(movies))
+      getMoviesData()
+        .then(([movies, savedMovies]) => {
+          setMovies(movies);
+          setSavedMovies(savedMovies);
+        })
         .catch((err) => handleError(err));
     } else {
       setFilteredMovies(filteredMoviesList);
@@ -102,6 +120,35 @@ const App = () => {
       .catch((err) => handleError(err));
   }
 
+  // Обработчик сохранения фильма
+  function handleLike(card) {
+    saveMovie(
+      {
+        country: card.country,
+        director: card.director,
+        duration: card.duration,
+        year: card.year,
+        description: card.description,
+        image: BASE_URL + card.image.url,
+        trailerLink: card.trailerLink,
+        thumbnail: BASE_URL + card.image.formats.thumbnail.url,
+        movieId: card.id,
+        nameRU: card.nameRU,
+        nameEN: card.nameEN,
+      },
+      token
+    )
+      .then((movie) => addMovieToSaved(movie))
+      .catch((err) => handleError(err));
+  }
+
+  // Обработчик удаления фильма из сохраненных
+  function handleDislike(savedMovie) {
+    deleteMovie(savedMovie._id, token)
+      .then(() => removeMovieFromSaved(savedMovie))
+      .catch((err) => handleError(err));
+  }
+
   return (
     <div className='app'>
       <Header />
@@ -113,7 +160,11 @@ const App = () => {
             path='/movies'
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <Movies onSearch={handleSearchMovies} />
+                <Movies
+                  onSearch={handleSearchMovies}
+                  onLike={handleLike}
+                  onDislike={handleDislike}
+                />
               </ProtectedRoute>
             }
           />

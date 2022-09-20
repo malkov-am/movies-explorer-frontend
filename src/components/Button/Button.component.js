@@ -38,7 +38,7 @@ const Button = ({
       className={clsx(
         "button",
         `button_type_${buttonType}`,
-        isActive && `button_type_${buttonType}_disabled`,
+        isActive && `button_type_${buttonType}_active`,
         isDisabled && `button_type_${buttonType}_disabled`,
         {
           button_color_black: color === "black",

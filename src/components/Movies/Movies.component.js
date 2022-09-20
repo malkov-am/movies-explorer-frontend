@@ -6,11 +6,17 @@ import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 import MoviesCard from "../MoviesCard/MoviesCard.component";
 import { MoviesContext } from "../../contexts/Movies.context";
 
-const Movies = ({ onSearch }) => {
-  const { movies, filteredMovies } = useContext(MoviesContext);
+const Movies = ({ onSearch, onLike, onDislike }) => {
+  const { state, filteredMovies } = useContext(MoviesContext);
 
   const cardsElements = filteredMovies.map((card) => (
-    <MoviesCard card={card} key={card.id} />
+    <MoviesCard
+      card={card}
+      key={card.id}
+      onLike={onLike}
+      onDislike={onDislike}
+      buttonType="like"
+    />
   ));
 
   return (
@@ -31,8 +37,7 @@ const Movies = ({ onSearch }) => {
         buttonType={BUTTON_TYPE_CLASSES.more}
         type='button'
         onClick={() => {
-          console.log(movies);
-          console.log(filteredMovies);
+          console.log(state);
         }}
       >
         Еще
