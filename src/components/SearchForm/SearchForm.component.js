@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchForm.styles.scss";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.component";
 import Button, {
@@ -7,13 +7,28 @@ import Button, {
 } from "../Button/Button.component";
 
 const SearchForm = ({ onSubmit, keyword, setKeyword, isShort, setIsShort }) => {
+  const [errMessage, setErrMessage] = useState("");
+
+  const isValid = (() => {
+    if (keyword.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  })();
+
   const handleChangeSearch = (evt) => {
     setKeyword(evt.target.value);
   };
 
   const handleSearch = (evt) => {
     evt.preventDefault();
-    onSubmit();
+    if (isValid) {
+      setErrMessage("");
+      onSubmit();
+    } else {
+      setErrMessage("Нужно ввести ключевое слово");
+    }
   };
 
   return (
@@ -44,7 +59,7 @@ const SearchForm = ({ onSubmit, keyword, setKeyword, isShort, setIsShort }) => {
           </Button>
         </form>
       </div>
-      <p className='search__form-err-message'>Нужно ввести ключевое слово</p>
+      <p className='search__form-err-message'>{errMessage}</p>
       <FilterCheckbox isShort={isShort} setIsShort={setIsShort}>
         Короткометражки
       </FilterCheckbox>

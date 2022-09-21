@@ -30,6 +30,7 @@ const App = () => {
     movies,
     setMovies,
     filterMovies,
+    filterSavedMovies,
     setSavedMovies,
     addMovieToSaved,
     removeMovieFromSaved,
@@ -49,6 +50,15 @@ const App = () => {
     }
   }, []);
 
+  // Действия при логине: загружаем сохраненные фильмы
+  useEffect(() => {
+    if (token) {
+      getSavedMovies(token)
+        .then((savedMovies) => setSavedMovies(savedMovies))
+        .catch((err) => handleError(err));
+    }
+  }, [isLoggedIn]);
+
   // Обработчик проверки токена
   function handleTokenCheck(token) {
     checkToken(token)
@@ -65,23 +75,22 @@ const App = () => {
     console.error(err);
   }
 
-  // Запросы к серверам для получения списка всех фильмов и сохраненных фильмов
-  function getMoviesData() {
-    return Promise.all([getMovies(), getSavedMovies(token)]);
-  }
-
   // Обработчик поиска фильмов
   function handleSearchMovies() {
     if (movies.length === 0) {
-      getMoviesData()
-        .then(([movies, savedMovies]) => {
+      getMovies()
+        .then((movies) => {
           setMovies(movies);
-          setSavedMovies(savedMovies);
         })
         .catch((err) => handleError(err));
     } else {
       filterMovies();
     }
+  }
+
+  // Обработчик поиска сохраненных фильмов
+  function handleSearchSavedMovies() {
+    filterSavedMovies();
   }
 
   // Обработчик логина
@@ -108,6 +117,7 @@ const App = () => {
   // Обработчик выхода из профиля
   function handleLogout() {
     localStorage.removeItem("token");
+    setSavedMovies({});
     setIsLoggedIn(false);
     navigate("/");
   }
@@ -173,7 +183,10 @@ const App = () => {
             path='/saved-movies'
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <SavedMovies onDislike={handleDislike} />
+                <SavedMovies
+                  onSearch={handleSearchSavedMovies}
+                  onDislike={handleDislike}
+                />
               </ProtectedRoute>
             }
           />

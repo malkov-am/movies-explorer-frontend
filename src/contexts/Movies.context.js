@@ -27,49 +27,41 @@ const moviesReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case "SET_MOVIES":
-      console.log("SET_MOVIES FIRED");
       return {
         ...state,
         movies: payload,
       };
     case "SET_FILTERED_MOVIES":
-      console.log("SET_FILTERED_MOVIES FIRED");
       return {
         ...state,
         filteredMovies: payload,
       };
     case "SET_MOVIES_KEYWORD":
-      console.log("SET_MOVIES_KEYWORD FIRED");
       return {
         ...state,
         moviesKeyword: payload,
       };
     case "SET_MOVIES_IS_SHORT":
-      console.log("SET_MOVIES_IS_SHORT FIRED", payload);
       return {
         ...state,
         moviesIsShort: payload,
       };
     case "SET_SAVED_MOVIES":
-      console.log("SET_SAVED_MOVIES FIRED");
       return {
         ...state,
         savedMovies: payload,
       };
     case "SET_FILTERED_SAVED_MOVIES":
-      console.log("SET_FILTERED_SAVED_MOVIES FIRED");
       return {
         ...state,
         filteredSavedMovies: payload,
       };
     case "SET_SAVED_MOVIES_KEYWORD":
-      console.log("SET_SAVED_MOVIES_KEYWORD FIRED");
       return {
         ...state,
         savedMoviesKeyword: payload,
       };
     case "SET_SAVED_MOVIES_IS_SHORT":
-      console.log("SET_SAVED_MOVIES_IS_SHORT FIRED", payload);
       return {
         ...state,
         savedMoviesIsShort: payload,
@@ -95,9 +87,9 @@ export const MoviesProvider = ({ children }) => {
     savedMoviesIsShort,
   } = state;
 
-  const filter = (movies, keyword) => {
+  const filter = (movies, keyword, isShort) => {
     return movies.filter((movie) => {
-      if (moviesIsShort) {
+      if (isShort) {
         return (
           movie.nameRU.toLowerCase().includes(keyword.toLowerCase()) &&
           movie.duration <= 40
@@ -111,6 +103,10 @@ export const MoviesProvider = ({ children }) => {
   useEffect(() => {
     filterMovies();
   }, [movies, moviesIsShort]);
+
+  useEffect(() => {
+    filterSavedMovies();
+  }, [savedMovies, savedMoviesIsShort]);
 
   const setMovies = (movies) => {
     dispath(createAction(MOVIES_ACTION_TYPES.SET_MOVIES, movies));
@@ -156,8 +152,16 @@ export const MoviesProvider = ({ children }) => {
     );
   };
   const filterMovies = () => {
-    const filteredMovies = filter(movies, moviesKeyword);
+    const filteredMovies = filter(movies, moviesKeyword, moviesIsShort);
     setFilteredMovies(filteredMovies);
+  };
+  const filterSavedMovies = () => {
+    const filtereSaveddMovies = filter(
+      savedMovies,
+      savedMoviesKeyword,
+      savedMoviesIsShort
+    );
+    setFilteredSavedMovies(filtereSaveddMovies);
   };
 
   const value = {
@@ -172,6 +176,7 @@ export const MoviesProvider = ({ children }) => {
     moviesIsShort,
     setMoviesIsShort,
     savedMovies,
+    filterSavedMovies,
     setSavedMovies,
     filteredSavedMovies,
     setFilteredSavedMovies,

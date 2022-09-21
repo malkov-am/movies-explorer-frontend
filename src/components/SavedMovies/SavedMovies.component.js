@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./SavedMovies.styles.scss";
 import SearchForm from "../SearchForm/SearchForm.component";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.component";
@@ -10,6 +10,7 @@ const SavedMovies = ({ onSearch, onDislike }) => {
   const {
     state,
     savedMovies,
+    filterSavedMovies,
     filteredSavedMovies,
     savedMoviesKeyword,
     setSavedMoviesKeyword,
@@ -17,7 +18,7 @@ const SavedMovies = ({ onSearch, onDislike }) => {
     setSavedMoviesIsShort,
   } = useContext(MoviesContext);
 
-  const cardsElements = savedMovies.map((card) => (
+  const cardsElements = filteredSavedMovies.map((card) => (
     <MoviesCard
       card={card}
       key={card.movieId}
@@ -36,7 +37,9 @@ const SavedMovies = ({ onSearch, onDislike }) => {
         setIsShort={setSavedMoviesIsShort}
       />
       <MoviesCardList>{cardsElements}</MoviesCardList>
-      <Button buttonType={BUTTON_TYPE_CLASSES.more} type='button'>
+      <Button buttonType={BUTTON_TYPE_CLASSES.more} type='button' onClick={() => {
+          console.log(state);
+        }}>
         Еще
       </Button>
     </div>
