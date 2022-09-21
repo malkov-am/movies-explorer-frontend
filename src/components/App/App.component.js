@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./App.styles.scss";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "../Header/Header.component";
@@ -23,8 +23,12 @@ import {
 } from "../../utils/MainApi";
 import { UserContext } from "../../contexts/User.context";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ErrorPopup from "../ErrorPopup/ErrorPopup.component";
 
 const App = () => {
+  // Переменные состояния сообщения об ошибке
+  const [errMessage, setErrMessage] = useState("");
+  const [isErrorShown, setIsErrorShown] = useState(false);
   // Подписка на контекст
   const {
     movies,
@@ -72,7 +76,21 @@ const App = () => {
 
   // Обработка ошибок
   function handleError(err) {
-    console.error(err);
+    err.message
+      ? showErrorPopup(err.message)
+      : err
+          .json()
+          .then((message) =>
+            showErrorPopup(
+              message?.validation?.body?.message || message.message
+            )
+          );
+  }
+
+  function showErrorPopup(message) {
+    setErrMessage(message);
+    setIsErrorShown(true);
+    setTimeout(() => setIsErrorShown(false), 4000);
   }
 
   // Обработчик поиска фильмов
@@ -216,6 +234,7 @@ const App = () => {
         </Routes>
       </main>
       <Footer />
+      <ErrorPopup message={errMessage} isActive={isErrorShown} />
     </div>
   );
 };
