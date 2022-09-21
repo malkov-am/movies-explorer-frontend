@@ -10,6 +10,7 @@ export const MOVIES_ACTION_TYPES = {
   SET_FILTERED_SAVED_MOVIES: "SET_FILTERED_SAVED_MOVIES",
   SET_SAVED_MOVIES_KEYWORD: "SET_SAVED_MOVIES_KEYWORD",
   SET_SAVED_MOVIES_IS_SHORT: "SET_SAVED_MOVIES_IS_SHORT",
+  RESET_STATE: "RESET_STATE",
 };
 
 const INITIAL_STATE = {
@@ -66,6 +67,8 @@ const moviesReducer = (state, action) => {
         ...state,
         savedMoviesIsShort: payload,
       };
+    case "RESET_STATE":
+      return INITIAL_STATE;
 
     default:
       throw new Error(`Неподдерживаемое действие ${type} в moviesReducer`);
@@ -143,6 +146,9 @@ export const MoviesProvider = ({ children }) => {
       createAction(MOVIES_ACTION_TYPES.SET_SAVED_MOVIES_IS_SHORT, boolean)
     );
   };
+  const resetState = () => {
+    dispath(createAction(MOVIES_ACTION_TYPES.RESET_STATE));
+  };
   const addMovieToSaved = (movieToAdd) => {
     setSavedMovies([...savedMovies, movieToAdd]);
   };
@@ -186,6 +192,7 @@ export const MoviesProvider = ({ children }) => {
     setSavedMoviesIsShort,
     addMovieToSaved,
     removeMovieFromSaved,
+    resetState,
   };
 
   return (

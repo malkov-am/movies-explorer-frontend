@@ -38,6 +38,7 @@ const App = () => {
     setSavedMovies,
     addMovieToSaved,
     removeMovieFromSaved,
+    resetState,
   } = useContext(MoviesContext);
   const { isLoggedIn, setIsLoggedIn, setCurrentUser } = useContext(UserContext);
 
@@ -135,7 +136,7 @@ const App = () => {
   // Обработчик выхода из профиля
   function handleLogout() {
     localStorage.removeItem("token");
-    setSavedMovies({});
+    resetState();
     setIsLoggedIn(false);
     navigate("/");
   }
