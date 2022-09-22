@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Movies.styles.scss";
 import SearchForm from "../SearchForm/SearchForm.component";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.component";
@@ -8,6 +8,9 @@ import Preloader from "../Preloader/Preloader.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 
 const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
+  // Переменные состояния
+  const [itemsCount, setItemsCount] = useState(3);
+
   const {
     filteredMovies,
     moviesKeyword,
@@ -16,6 +19,10 @@ const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
     setMoviesIsShort,
     moviesIsSearched,
   } = useContext(MoviesContext);
+
+  useEffect(() => {
+    setItemsCount(3);
+  }, [filteredMovies]);
 
   const cardsElements = filteredMovies.map((card) => (
     <MoviesCard
@@ -26,6 +33,16 @@ const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
       buttonType='like'
     />
   ));
+
+  const shownCardElements = cardsElements.slice(0, itemsCount);
+
+  const handleExpand = () => {
+    setItemsCount(itemsCount + 3);
+  };
+
+  const isExpandActive = (() => {
+    return shownCardElements.length === cardsElements.length ? false : true;
+  })();
 
   const cardsMessage = (() => {
     if (!moviesIsSearched) {
@@ -46,14 +63,16 @@ const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
       />
       {isLoading && <Preloader />}
       {cardsMessage}
-      <MoviesCardList cardsElements={cardsElements} />
-      <Button
-        buttonType={BUTTON_TYPE_CLASSES.more}
-        type='button'
-        // onClick={}
-      >
-        Еще
-      </Button>
+      <MoviesCardList cardsElements={shownCardElements} />
+      {isExpandActive && (
+        <Button
+          buttonType={BUTTON_TYPE_CLASSES.more}
+          type='button'
+          onClick={handleExpand}
+        >
+          Еще
+        </Button>
+      )}
     </div>
   );
 };

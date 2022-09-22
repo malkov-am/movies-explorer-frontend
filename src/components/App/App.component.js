@@ -81,7 +81,6 @@ const App = () => {
       .then((userData) => {
         setCurrentUser(userData);
         setIsLoggedIn(true);
-        navigate("/movies");
       })
       .catch((err) => handleError(err));
   }
@@ -136,6 +135,7 @@ const App = () => {
         if (data.token) {
           localStorage.setItem("token", data.token);
           handleTokenCheck(data.token);
+          navigate("/movies");
         }
       })
       .catch((err) => handleError(err));
@@ -193,7 +193,6 @@ const App = () => {
 
   // Обработчик удаления фильма из сохраненных
   function handleDislike(savedMovie) {
-    console.log(savedMovie);
     deleteMovie(savedMovie._id, token)
       .then(() => removeMovieFromSaved(savedMovie))
       .catch((err) => handleError(err));
@@ -246,12 +245,12 @@ const App = () => {
           <Route
             exact
             path='/signin'
-            element={<Login onLogin={handleLogin} />}
+            element={<Login onLogin={handleLogin} isLoggedIn={isLoggedIn} />}
           />
           <Route
             exact
             path='/signup'
-            element={<Register onRegister={handleRegister} />}
+            element={<Register onRegister={handleRegister} isLoggedIn={isLoggedIn} />}
           />
           <Route path='*' element={<NotFound />} />
         </Routes>

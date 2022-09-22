@@ -36,14 +36,20 @@ export const UserProvider = ({ children }) => {
   const [state, dispath] = useReducer(userReducer, INITIAL_STATE);
   const { currentUser, isLoggedIn } = state;
 
-  const setIsLoggedIn = (boolean) => {
-    dispath(createAction(USER_ACTION_TYPES.SET_IS_LOGGED_IN, boolean));
+  const setIsLoggedIn = (value) => {
+    dispath(createAction(USER_ACTION_TYPES.SET_IS_LOGGED_IN, value));
   };
   const setCurrentUser = (userData) => {
     dispath(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, userData));
   };
 
-  const value = { state, currentUser, isLoggedIn, setIsLoggedIn, setCurrentUser };
+  const value = {
+    state,
+    currentUser,
+    isLoggedIn,
+    setIsLoggedIn,
+    setCurrentUser,
+  };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

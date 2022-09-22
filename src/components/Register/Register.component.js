@@ -4,10 +4,10 @@ import Button, {
   BUTTON_TYPE_CLASSES,
 } from "../Button/Button.component";
 import SignForm from "../SignForm/SignForm.component";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useValidation from "../../hooks/useValidation";
 
-const Register = ({ onRegister }) => {
+const Register = ({ onRegister, isLoggedIn }) => {
   // Валидация формы
   const { values, errors, isValid, handleChange, resetForms } =
     useValidation(".sign__form");
@@ -18,7 +18,15 @@ const Register = ({ onRegister }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onRegister({ name: values.name, email: values.email, password: values.password });
+    onRegister({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    });
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to='/movies' />;
   }
 
   return (
