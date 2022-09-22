@@ -6,6 +6,7 @@ export const MOVIES_ACTION_TYPES = {
   SET_FILTERED_MOVIES: "SET_FILTERED_MOVIES",
   SET_MOVIES_KEYWORD: "SET_MOVIES_KEYWORD",
   SET_MOVIES_IS_SHORT: "SET_MOVIES_IS_SHORT",
+  SET_MOVIES_IS_SEARCHED: "SET_MOVIES_IS_SEARCHED",
   SET_SAVED_MOVIES: "SET_SAVED_MOVIES",
   SET_FILTERED_SAVED_MOVIES: "SET_FILTERED_SAVED_MOVIES",
   SET_SAVED_MOVIES_KEYWORD: "SET_SAVED_MOVIES_KEYWORD",
@@ -18,6 +19,7 @@ const INITIAL_STATE = {
   filteredMovies: [],
   moviesKeyword: "",
   moviesIsShort: false,
+  moviesIsSearched: false,
   savedMovies: [],
   filteredSavedMovies: [],
   savedMoviesKeyword: "",
@@ -47,6 +49,11 @@ const moviesReducer = (state, action) => {
         ...state,
         moviesIsShort: payload,
       };
+      case "SET_MOVIES_IS_SEARCHED":
+        return {
+          ...state,
+          moviesIsSearched: payload,
+        };
     case "SET_SAVED_MOVIES":
       return {
         ...state,
@@ -84,6 +91,7 @@ export const MoviesProvider = ({ children }) => {
     filteredMovies,
     moviesKeyword,
     moviesIsShort,
+    moviesIsSearched,
     savedMovies,
     filteredSavedMovies,
     savedMoviesKeyword,
@@ -118,13 +126,16 @@ export const MoviesProvider = ({ children }) => {
     dispath(
       createAction(MOVIES_ACTION_TYPES.SET_FILTERED_MOVIES, filteredMovies)
     );
-    localStorage.setItem("moviesState", JSON.stringify({ movies, moviesKeyword, moviesIsShort }));
+    localStorage.setItem("moviesState", JSON.stringify({ movies, moviesKeyword, moviesIsShort, moviesIsSearched }));
   };
   const setMoviesKeyword = (keyword) => {
     dispath(createAction(MOVIES_ACTION_TYPES.SET_MOVIES_KEYWORD, keyword));
   };
   const setMoviesIsShort = (boolean) => {
     dispath(createAction(MOVIES_ACTION_TYPES.SET_MOVIES_IS_SHORT, boolean));
+  };
+  const setMoviesIsSearched = (boolean) => {
+    dispath(createAction(MOVIES_ACTION_TYPES.SET_MOVIES_IS_SEARCHED, boolean));
   };
   const setSavedMovies = (savedMovies) => {
     dispath(createAction(MOVIES_ACTION_TYPES.SET_SAVED_MOVIES, savedMovies));
@@ -171,10 +182,11 @@ export const MoviesProvider = ({ children }) => {
     setFilteredSavedMovies(filtereSaveddMovies);
   };
   const restoreState = (state) => {
-    const { movies, moviesKeyword, moviesIsShort } = JSON.parse(state);
+    const { movies, moviesKeyword, moviesIsShort, moviesIsSearched } = JSON.parse(state);
     setMovies(movies);
     setMoviesKeyword(moviesKeyword);
     setMoviesIsShort(moviesIsShort);
+    setMoviesIsSearched(moviesIsSearched);
   }
 
   const value = {
@@ -188,6 +200,8 @@ export const MoviesProvider = ({ children }) => {
     setMoviesKeyword,
     moviesIsShort,
     setMoviesIsShort,
+    moviesIsSearched,
+    setMoviesIsSearched,
     savedMovies,
     filterSavedMovies,
     setSavedMovies,

@@ -1,16 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "./SavedMovies.styles.scss";
 import SearchForm from "../SearchForm/SearchForm.component";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.component";
-import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 import MoviesCard from "../MoviesCard/MoviesCard.component";
 import { MoviesContext } from "../../contexts/Movies.context";
 
 const SavedMovies = ({ onSearch, onDislike }) => {
   const {
-    state,
-    savedMovies,
-    filterSavedMovies,
     filteredSavedMovies,
     savedMoviesKeyword,
     setSavedMoviesKeyword,
@@ -36,12 +32,7 @@ const SavedMovies = ({ onSearch, onDislike }) => {
         isShort={savedMoviesIsShort}
         setIsShort={setSavedMoviesIsShort}
       />
-      <MoviesCardList>{cardsElements}</MoviesCardList>
-      <Button buttonType={BUTTON_TYPE_CLASSES.more} type='button' onClick={() => {
-          console.log(state);
-        }}>
-        Еще
-      </Button>
+      <MoviesCardList cardsElements={cardsElements} />
     </div>
   );
 };

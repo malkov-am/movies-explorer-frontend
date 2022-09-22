@@ -2,18 +2,19 @@ import React, { useContext } from "react";
 import "./Movies.styles.scss";
 import SearchForm from "../SearchForm/SearchForm.component";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.component";
-import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 import MoviesCard from "../MoviesCard/MoviesCard.component";
 import { MoviesContext } from "../../contexts/Movies.context";
+import Preloader from "../Preloader/Preloader.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 
-const Movies = ({ onSearch, onLike, onDislike }) => {
+const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
   const {
-    state,
     filteredMovies,
     moviesKeyword,
     setMoviesKeyword,
     moviesIsShort,
     setMoviesIsShort,
+    moviesIsSearched,
   } = useContext(MoviesContext);
 
   const cardsElements = filteredMovies.map((card) => (
@@ -26,6 +27,14 @@ const Movies = ({ onSearch, onLike, onDislike }) => {
     />
   ));
 
+  const cardsMessage = (() => {
+    if (!moviesIsSearched) {
+      return <p className='movies__message'>Начните поиск</p>;
+    } else if (!isLoading && cardsElements.length === 0) {
+      return <p className='movies__message'>Ничего не найдено</p>;
+    }
+  })();
+
   return (
     <div className='movies'>
       <SearchForm
@@ -35,23 +44,13 @@ const Movies = ({ onSearch, onLike, onDislike }) => {
         isShort={moviesIsShort}
         setIsShort={setMoviesIsShort}
       />
-      {/* <p className='movies__message'>Начните поиск</p> */}
-      <MoviesCardList>
-        {cardsElements}
-        {/* <MoviesCard
-          card={{
-            nameRU: "33 слова о дизайне",
-            duration: "1ч 47м",
-            image: imgPath,
-          }}
-        /> */}
-      </MoviesCardList>
+      {isLoading && <Preloader />}
+      {cardsMessage}
+      <MoviesCardList cardsElements={cardsElements} />
       <Button
         buttonType={BUTTON_TYPE_CLASSES.more}
         type='button'
-        onClick={() => {
-          console.log(state);
-        }}
+        // onClick={}
       >
         Еще
       </Button>

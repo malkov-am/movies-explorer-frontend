@@ -1,8 +1,8 @@
 import React from "react";
 import "./MoviesCardList.styles.scss";
 
-const MoviesCardList = ({ children }) => {
-  return <div className='movies-card-list'>{children}</div>;
+const MoviesCardList = ({ cardsElements }) => {
+  return <div className='movies-card-list'>{cardsElements}</div>;
 };
 
 export default MoviesCardList;

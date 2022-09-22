@@ -31,10 +31,14 @@ const App = () => {
   const [infoPopupType, setInfoPopupType] = useState("");
   const [isInfoPopupShown, setIsInfoPopupShown] = useState(false);
 
+  // Переменные состояния прелоадера
+  const [isLoading, setIsLoading] = useState(false);
+
   // Подписка на контекст
   const {
     movies,
     setMovies,
+    setMoviesIsSearched,
     filterMovies,
     filterSavedMovies,
     setSavedMovies,
@@ -107,11 +111,14 @@ const App = () => {
   // Обработчик поиска фильмов
   function handleSearchMovies() {
     if (movies.length === 0) {
+      setMoviesIsSearched(true);
+      setIsLoading(true);
       getMovies()
         .then((movies) => {
           setMovies(movies);
         })
-        .catch((err) => handleError(err));
+        .catch((err) => handleError(err))
+        .finally(() => setIsLoading(false));
     } else {
       filterMovies();
     }
@@ -207,6 +214,7 @@ const App = () => {
                   onSearch={handleSearchMovies}
                   onLike={handleLike}
                   onDislike={handleDislike}
+                  isLoading={isLoading}
                 />
               </ProtectedRoute>
             }
