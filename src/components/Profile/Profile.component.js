@@ -15,7 +15,7 @@ const Profile = ({ onLogout, onUpdateProfile }) => {
   const { name, email } = currentUser;
 
   // Валидация формы
-  const { values, errors, handleChange, resetForms } =
+  const { values, errors, isValid, handleChange, resetForms } =
     useValidation(".profile__form");
 
   // Изменились ли данные в форме
@@ -83,7 +83,7 @@ const Profile = ({ onLogout, onUpdateProfile }) => {
             buttonType={BUTTON_TYPE_CLASSES.link}
             type='submit'
             color={BUTTON_COLOR_CLASSES.black}
-            isDisabled={!isUserDataChanged}
+            isDisabled={!isUserDataChanged || !isValid}
             onClick={handleSubmit}
           >
             Редактировать

@@ -6,10 +6,16 @@ import MoviesCard from "../MoviesCard/MoviesCard.component";
 import { MoviesContext } from "../../contexts/Movies.context";
 import Preloader from "../Preloader/Preloader.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
+import { useMediaQuery } from "react-responsive";
 
 const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
-  // Переменные состояния
-  const [itemsCount, setItemsCount] = useState(3);
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+  const isTablet = useMediaQuery({
+    query: "(min-width: 768px) and (max-width: 1279px)",
+  });
+  const isDesktop = useMediaQuery({ query: "(min-width: 1280px)" });
+
+  const [itemsCount, setItemsCount] = useState(5);
 
   const {
     filteredMovies,
@@ -21,8 +27,19 @@ const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
   } = useContext(MoviesContext);
 
   useEffect(() => {
-    setItemsCount(3);
-  }, [filteredMovies]);
+    const initialQuantity = (() => {
+      if (isMobile) {
+        return 5;
+      }
+      if (isTablet) {
+        return 8;
+      }
+      if (isDesktop) {
+        return 12;
+      }
+    })();
+    setItemsCount(initialQuantity);
+  }, [filteredMovies, isMobile, isTablet, isDesktop]);
 
   const cardsElements = filteredMovies.map((card) => (
     <MoviesCard
@@ -37,7 +54,18 @@ const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
   const shownCardElements = cardsElements.slice(0, itemsCount);
 
   const handleExpand = () => {
-    setItemsCount(itemsCount + 3);
+    const expandQuantity = (() => {
+      if (isMobile) {
+        return 2;
+      }
+      if (isTablet) {
+        return 2;
+      }
+      if (isDesktop) {
+        return 3;
+      }
+    })();
+    setItemsCount(itemsCount + expandQuantity);
   };
 
   const isExpandActive = (() => {
