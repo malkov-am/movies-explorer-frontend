@@ -23,12 +23,14 @@ import {
 } from "../../utils/MainApi";
 import { UserContext } from "../../contexts/User.context";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import ErrorPopup from "../ErrorPopup/ErrorPopup.component";
+import InfoPopup from "../InfoPopup/InfoPopup.component";
 
 const App = () => {
   // Переменные состояния сообщения об ошибке
-  const [errMessage, setErrMessage] = useState("");
-  const [isErrorShown, setIsErrorShown] = useState(false);
+  const [infoPopupMessage, setInfoPopupMessage] = useState("");
+  const [infoPopupType, setInfoPopupType] = useState("");
+  const [isInfoPopupShown, setIsInfoPopupShown] = useState(false);
+
   // Подписка на контекст
   const {
     movies,
@@ -78,20 +80,23 @@ const App = () => {
   // Обработка ошибок
   function handleError(err) {
     err.message
-      ? showErrorPopup(err.message)
+      ? showInfoPopup("error", err.message)
       : err
           .json()
           .then((message) =>
-            showErrorPopup(
+            showInfoPopup(
+              "error",
               message?.validation?.body?.message || message.message
             )
           );
   }
 
-  function showErrorPopup(message) {
-    setErrMessage(message);
-    setIsErrorShown(true);
-    setTimeout(() => setIsErrorShown(false), 4000);
+  // Отобразить попап
+  function showInfoPopup(type, message) {
+    setInfoPopupType(type);
+    setInfoPopupMessage(message);
+    setIsInfoPopupShown(true);
+    setTimeout(() => setIsInfoPopupShown(false), 4000);
   }
 
   // Обработчик поиска фильмов
@@ -144,7 +149,10 @@ const App = () => {
   // Обработчик обновления профиля
   function handleUpdateProfile(userData) {
     updateProfile(userData, token)
-      .then((updatedUserData) => setCurrentUser(updatedUserData))
+      .then((updatedUserData) => {
+        setCurrentUser(updatedUserData);
+        showInfoPopup("success", "Профиль обновлен");
+      })
       .catch((err) => handleError(err));
   }
 
@@ -235,7 +243,11 @@ const App = () => {
         </Routes>
       </main>
       <Footer />
-      <ErrorPopup message={errMessage} isActive={isErrorShown} />
+      <InfoPopup
+        message={infoPopupMessage}
+        isActive={isInfoPopupShown}
+        type={infoPopupType}
+      />
     </div>
   );
 };

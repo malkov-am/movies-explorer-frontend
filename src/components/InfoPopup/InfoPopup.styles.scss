@@ -1,12 +1,11 @@
 @import "../../utils/colors";
 
-.error-popup {
+.info-popup {
   box-sizing: border-box;
   display: block;
   position: fixed;
   top: -24px;
   left: 0;
-  background-color: $color-error;
   color: $color-text-inverted;
   border-bottom-right-radius: 7px;
   font-size: 11px;
@@ -31,5 +30,13 @@
 
   &_active {
     top: 0;
+  }
+
+  &_type_success {
+    background-color: $color-ui;
+  }
+  
+  &_type_error {
+    background-color: $color-error;
   }
 }
