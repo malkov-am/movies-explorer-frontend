@@ -41,14 +41,16 @@ const App = () => {
     addMovieToSaved,
     removeMovieFromSaved,
     resetState,
+    restoreState,
   } = useContext(MoviesContext);
   const { isLoggedIn, setIsLoggedIn, setCurrentUser } = useContext(UserContext);
 
   // Хуки
   const navigate = useNavigate();
 
-  // Чтение токена
+  // Чтение локального хранилища
   const token = localStorage.getItem("token");
+  const moviesState = localStorage.getItem("moviesState");
 
   // Действия при загрузке приложения: проверяем токен
   useEffect(() => {
@@ -63,6 +65,9 @@ const App = () => {
       getSavedMovies(token)
         .then((savedMovies) => setSavedMovies(savedMovies))
         .catch((err) => handleError(err));
+    }
+    if (moviesState) {
+      restoreState(moviesState);
     }
   }, [isLoggedIn]);
 
@@ -141,6 +146,7 @@ const App = () => {
   // Обработчик выхода из профиля
   function handleLogout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("moviesState");
     resetState();
     setIsLoggedIn(false);
     navigate("/");

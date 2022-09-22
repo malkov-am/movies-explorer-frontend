@@ -118,6 +118,7 @@ export const MoviesProvider = ({ children }) => {
     dispath(
       createAction(MOVIES_ACTION_TYPES.SET_FILTERED_MOVIES, filteredMovies)
     );
+    localStorage.setItem("moviesState", JSON.stringify({ movies, moviesKeyword, moviesIsShort }));
   };
   const setMoviesKeyword = (keyword) => {
     dispath(createAction(MOVIES_ACTION_TYPES.SET_MOVIES_KEYWORD, keyword));
@@ -169,6 +170,12 @@ export const MoviesProvider = ({ children }) => {
     );
     setFilteredSavedMovies(filtereSaveddMovies);
   };
+  const restoreState = (state) => {
+    const { movies, moviesKeyword, moviesIsShort } = JSON.parse(state);
+    setMovies(movies);
+    setMoviesKeyword(moviesKeyword);
+    setMoviesIsShort(moviesIsShort);
+  }
 
   const value = {
     state,
@@ -193,6 +200,7 @@ export const MoviesProvider = ({ children }) => {
     addMovieToSaved,
     removeMovieFromSaved,
     resetState,
+    restoreState,
   };
 
   return (
