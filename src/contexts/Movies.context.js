@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
+import { SHORT_MOVIE_MIN_DURATION } from "../utils/constants";
 import { createAction } from "../utils/reducer";
 
 export const MOVIES_ACTION_TYPES = {
@@ -103,7 +104,7 @@ export const MoviesProvider = ({ children }) => {
       if (isShort) {
         return (
           movie.nameRU.toLowerCase().includes(keyword.toLowerCase()) &&
-          movie.duration <= 40
+          movie.duration <= SHORT_MOVIE_MIN_DURATION
         );
       } else {
         return movie.nameRU.toLowerCase().includes(keyword.toLowerCase());

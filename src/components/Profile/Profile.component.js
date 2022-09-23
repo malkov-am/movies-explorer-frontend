@@ -6,6 +6,7 @@ import Button, {
 } from "../Button/Button.component";
 import useValidation from "../../hooks/useValidation";
 import { UserContext } from "../../contexts/User.context";
+import { NAME_MAX_LENGTH, NAME_MIN_LENGTH } from "../../utils/constants";
 
 const Profile = ({ onLogout, onUpdateProfile }) => {
   // Переменные состояния
@@ -52,8 +53,8 @@ const Profile = ({ onLogout, onUpdateProfile }) => {
                 className='profile__form-input'
                 type='text'
                 required
-                minLength='2'
-                maxLength='30'
+                minLength={NAME_MIN_LENGTH}
+                maxLength={NAME_MAX_LENGTH}
                 onChange={handleChange}
                 value={values.name || ""}
               />
@@ -73,7 +74,7 @@ const Profile = ({ onLogout, onUpdateProfile }) => {
                 required
                 onChange={handleChange}
                 value={values.email || ""}
-                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                pattern='^[^\s@]+@[^\s@]+\.[^\s@]+$'
               />
             </div>
             <p className='profile__form-err-message'>{errors.email}</p>

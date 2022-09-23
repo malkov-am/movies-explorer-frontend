@@ -24,6 +24,10 @@ import {
 import { UserContext } from "../../contexts/User.context";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import InfoPopup from "../InfoPopup/InfoPopup.component";
+import {
+  POPUP_DELAY_TIME,
+  UNAUTHORIZED_ERROR_CODE,
+} from "../../utils/constants";
 
 const App = () => {
   // Переменные состояния сообщения об ошибке
@@ -73,7 +77,7 @@ const App = () => {
               message?.validation?.body?.message || message.message
             )
           );
-    if (err.status === 401) handleLogout();
+    if (err.status === UNAUTHORIZED_ERROR_CODE) handleLogout();
   }
 
   // Действия при логине: загружаем сохраненные фильмы
@@ -105,7 +109,7 @@ const App = () => {
     setInfoPopupType(type);
     setInfoPopupMessage(message);
     setIsInfoPopupShown(true);
-    setTimeout(() => setIsInfoPopupShown(false), 4000);
+    setTimeout(() => setIsInfoPopupShown(false), POPUP_DELAY_TIME);
   }
 
   // Обработчик поиска фильмов

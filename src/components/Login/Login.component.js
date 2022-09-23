@@ -6,6 +6,10 @@ import Button, {
 import SignForm from "../SignForm/SignForm.component";
 import { Link, Navigate } from "react-router-dom";
 import useValidation from "../../hooks/useValidation";
+import {
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+} from "../../utils/constants";
 
 const Login = ({ onLogin, isLoggedIn }) => {
   // Валидация формы
@@ -51,8 +55,8 @@ const Login = ({ onLogin, isLoggedIn }) => {
           className='sign__form-input'
           type='password'
           required
-          minLength='6'
-          maxLength='30'
+          minLength={PASSWORD_MIN_LENGTH}
+          maxLength={PASSWORD_MAX_LENGTH}
           onChange={handleChange}
           value={values.password || ""}
         />

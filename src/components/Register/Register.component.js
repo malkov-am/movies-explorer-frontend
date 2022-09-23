@@ -6,6 +6,12 @@ import Button, {
 import SignForm from "../SignForm/SignForm.component";
 import { Link, Navigate } from "react-router-dom";
 import useValidation from "../../hooks/useValidation";
+import {
+  NAME_MAX_LENGTH,
+  NAME_MIN_LENGTH,
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+} from "../../utils/constants";
 
 const Register = ({ onRegister, isLoggedIn }) => {
   // Валидация формы
@@ -41,8 +47,8 @@ const Register = ({ onRegister, isLoggedIn }) => {
           className='sign__form-input'
           type='text'
           required
-          minLength='2'
-          maxLength='30'
+          minLength={NAME_MIN_LENGTH}
+          maxLength={NAME_MAX_LENGTH}
           onChange={handleChange}
           value={values.name || ""}
         />
@@ -69,8 +75,8 @@ const Register = ({ onRegister, isLoggedIn }) => {
           className='sign__form-input'
           type='password'
           required
-          minLength='6'
-          maxLength='30'
+          minLength={PASSWORD_MIN_LENGTH}
+          maxLength={PASSWORD_MAX_LENGTH}
           onChange={handleChange}
           value={values.password || ""}
         />

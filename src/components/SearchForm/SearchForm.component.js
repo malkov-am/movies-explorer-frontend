@@ -5,6 +5,7 @@ import Button, {
   BUTTON_COLOR_CLASSES,
   BUTTON_TYPE_CLASSES,
 } from "../Button/Button.component";
+import { SEARCH_KEYWORD_MIN_LENGTH } from "../../utils/constants";
 
 const SearchForm = ({ onSubmit, keyword, setKeyword, isShort, setIsShort }) => {
   const [errMessage, setErrMessage] = useState("");
@@ -36,7 +37,7 @@ const SearchForm = ({ onSubmit, keyword, setKeyword, isShort, setIsShort }) => {
       <div className='search__container'>
         <form
           className='search__form'
-          minLength='1'
+          minLength={SEARCH_KEYWORD_MIN_LENGTH}
           onSubmit={handleSearch}
           noValidate
         >

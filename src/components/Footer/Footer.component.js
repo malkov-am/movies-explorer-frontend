@@ -5,6 +5,7 @@ import "./Footer.styles.scss";
 const Footer = () => {
   const location = useLocation();
   const routesWithFooter = ["/", "/movies", "/saved-movies"];
+  const currentYear = new Date().getFullYear();
 
   if (routesWithFooter.includes(location.pathname.toLowerCase())) {
     return (
@@ -31,7 +32,7 @@ const Footer = () => {
               Github
             </a>
           </div>
-          <p className='footer__year'>&copy;2020</p>
+          <p className='footer__year'>&copy;{currentYear}</p>
         </div>
       </footer>
     );
