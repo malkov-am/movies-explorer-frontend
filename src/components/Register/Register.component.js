@@ -64,6 +64,7 @@ const Register = ({ onRegister, isLoggedIn }) => {
           required
           onChange={handleChange}
           value={values.email || ""}
+          pattern='^[^\s@]+@[^\s@]+\.[^\s@]+$'
         />
         <p className='sign__form-err-message'>{errors.email}</p>
         <label htmlFor='password' className='sign__form-label'>
