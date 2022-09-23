@@ -58,10 +58,23 @@ const App = () => {
 
   // Действия при загрузке приложения: проверяем токен
   useEffect(() => {
-    if (token) {
-      handleTokenCheck(token);
-    }
+    token ? handleTokenCheck(token) : setIsLoggedIn(false);
   }, []);
+
+  // Обработка ошибок
+  function handleError(err) {
+    err.message
+      ? showInfoPopup("error", err.message)
+      : err
+          .json()
+          .then((message) =>
+            showInfoPopup(
+              "error",
+              message?.validation?.body?.message || message.message
+            )
+          );
+    if (err.status === 401) handleLogout();
+  }
 
   // Действия при логине: загружаем сохраненные фильмы
   useEffect(() => {
@@ -82,21 +95,9 @@ const App = () => {
         setCurrentUser(userData);
         setIsLoggedIn(true);
       })
-      .catch((err) => handleError(err));
-  }
-
-  // Обработка ошибок
-  function handleError(err) {
-    err.message
-      ? showInfoPopup("error", err.message)
-      : err
-          .json()
-          .then((message) =>
-            showInfoPopup(
-              "error",
-              message?.validation?.body?.message || message.message
-            )
-          );
+      .catch((err) => {
+        handleError(err);
+      });
   }
 
   // Отобразить попап
@@ -143,17 +144,17 @@ const App = () => {
 
   // Обработчик регистрации
   function handleRegister(userData) {
+    const { email, password } = userData;
     register(userData)
       .then(() => {
-        navigate("/signin");
+        handleLogin({ email, password });
       })
       .catch((err) => handleError(err));
   }
 
   // Обработчик выхода из профиля
   function handleLogout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("moviesState");
+    localStorage.clear();
     resetState();
     setIsLoggedIn(false);
     navigate("/");
@@ -197,6 +198,9 @@ const App = () => {
       .then(() => removeMovieFromSaved(savedMovie))
       .catch((err) => handleError(err));
   }
+
+  // Не рендерим страницу, пока не получили пользователя
+  if (isLoggedIn === undefined) return null;
 
   return (
     <div className='app'>
@@ -250,7 +254,9 @@ const App = () => {
           <Route
             exact
             path='/signup'
-            element={<Register onRegister={handleRegister} isLoggedIn={isLoggedIn} />}
+            element={
+              <Register onRegister={handleRegister} isLoggedIn={isLoggedIn} />
+            }
           />
           <Route path='*' element={<NotFound />} />
         </Routes>

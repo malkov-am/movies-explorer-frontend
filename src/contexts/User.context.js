@@ -8,7 +8,7 @@ export const USER_ACTION_TYPES = {
 
 const INITIAL_STATE = {
   currentUser: "",
-  isLoggedIn: false,
+  isLoggedIn: undefined,
 };
 
 const userReducer = (state, action) => {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./SavedMovies.styles.scss";
 import SearchForm from "../SearchForm/SearchForm.component";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.component";
@@ -12,7 +12,16 @@ const SavedMovies = ({ onSearch, onDislike }) => {
     setSavedMoviesKeyword,
     savedMoviesIsShort,
     setSavedMoviesIsShort,
+    filterSavedMovies,
   } = useContext(MoviesContext);
+
+  useEffect(() => {
+    filterSavedMovies();
+    return () => {
+      setSavedMoviesKeyword("");
+      setSavedMoviesIsShort(false);
+    };
+  }, []);
 
   const cardsElements = filteredSavedMovies.map((card) => (
     <MoviesCard

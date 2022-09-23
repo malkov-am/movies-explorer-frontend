@@ -49,11 +49,11 @@ const moviesReducer = (state, action) => {
         ...state,
         moviesIsShort: payload,
       };
-      case "SET_MOVIES_IS_SEARCHED":
-        return {
-          ...state,
-          moviesIsSearched: payload,
-        };
+    case "SET_MOVIES_IS_SEARCHED":
+      return {
+        ...state,
+        moviesIsSearched: payload,
+      };
     case "SET_SAVED_MOVIES":
       return {
         ...state,
@@ -126,7 +126,10 @@ export const MoviesProvider = ({ children }) => {
     dispath(
       createAction(MOVIES_ACTION_TYPES.SET_FILTERED_MOVIES, filteredMovies)
     );
-    localStorage.setItem("moviesState", JSON.stringify({ movies, moviesKeyword, moviesIsShort, moviesIsSearched }));
+    localStorage.setItem(
+      "moviesState",
+      JSON.stringify({ movies, moviesKeyword, moviesIsShort, moviesIsSearched })
+    );
   };
   const setMoviesKeyword = (keyword) => {
     dispath(createAction(MOVIES_ACTION_TYPES.SET_MOVIES_KEYWORD, keyword));
@@ -174,20 +177,21 @@ export const MoviesProvider = ({ children }) => {
     setFilteredMovies(filteredMovies);
   };
   const filterSavedMovies = () => {
-    const filtereSaveddMovies = filter(
+    const filteredSavedMovies = filter(
       savedMovies,
       savedMoviesKeyword,
       savedMoviesIsShort
     );
-    setFilteredSavedMovies(filtereSaveddMovies);
+    setFilteredSavedMovies(filteredSavedMovies);
   };
   const restoreState = (state) => {
-    const { movies, moviesKeyword, moviesIsShort, moviesIsSearched } = JSON.parse(state);
+    const { movies, moviesKeyword, moviesIsShort, moviesIsSearched } =
+      JSON.parse(state);
     setMovies(movies);
     setMoviesKeyword(moviesKeyword);
     setMoviesIsShort(moviesIsShort);
     setMoviesIsSearched(moviesIsSearched);
-  }
+  };
 
   const value = {
     state,

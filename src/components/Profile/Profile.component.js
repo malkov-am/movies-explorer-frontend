@@ -73,6 +73,7 @@ const Profile = ({ onLogout, onUpdateProfile }) => {
                 required
                 onChange={handleChange}
                 value={values.email || ""}
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
               />
             </div>
             <p className='profile__form-err-message'>{errors.email}</p>
