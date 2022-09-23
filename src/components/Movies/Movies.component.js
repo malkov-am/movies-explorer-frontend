@@ -7,6 +7,14 @@ import { MoviesContext } from "../../contexts/Movies.context";
 import Preloader from "../Preloader/Preloader.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 import { useMediaQuery } from "react-responsive";
+import {
+  EXPAND_CARDS_QUANTITY_DESKTOP,
+  EXPAND_CARDS_QUANTITY_MOBILE,
+  EXPAND_CARDS_QUANTITY_TABLET,
+  INITIAL_CARDS_QUANTITY_DESKTOP,
+  INITIAL_CARDS_QUANTITY_MOBILE,
+  INITIAL_CARDS_QUANTITY_TABLET,
+} from "../../utils/constants";
 
 const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
@@ -15,7 +23,7 @@ const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
   });
   const isDesktop = useMediaQuery({ query: "(min-width: 1280px)" });
 
-  const [itemsCount, setItemsCount] = useState(5);
+  const [itemsCount, setItemsCount] = useState(INITIAL_CARDS_QUANTITY_MOBILE);
 
   const {
     filteredMovies,
@@ -29,13 +37,13 @@ const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
   useEffect(() => {
     const initialQuantity = (() => {
       if (isMobile) {
-        return 5;
+        return INITIAL_CARDS_QUANTITY_MOBILE;
       }
       if (isTablet) {
-        return 8;
+        return INITIAL_CARDS_QUANTITY_TABLET;
       }
       if (isDesktop) {
-        return 12;
+        return INITIAL_CARDS_QUANTITY_DESKTOP;
       }
     })();
     setItemsCount(initialQuantity);
@@ -56,13 +64,13 @@ const Movies = ({ onSearch, onLike, onDislike, isLoading }) => {
   const handleExpand = () => {
     const expandQuantity = (() => {
       if (isMobile) {
-        return 2;
+        return EXPAND_CARDS_QUANTITY_MOBILE;
       }
       if (isTablet) {
-        return 2;
+        return EXPAND_CARDS_QUANTITY_TABLET;
       }
       if (isDesktop) {
-        return 3;
+        return EXPAND_CARDS_QUANTITY_DESKTOP;
       }
     })();
     setItemsCount(itemsCount + expandQuantity);
