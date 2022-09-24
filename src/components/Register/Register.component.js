@@ -4,10 +4,16 @@ import Button, {
   BUTTON_TYPE_CLASSES,
 } from "../Button/Button.component";
 import SignForm from "../SignForm/SignForm.component";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useValidation from "../../hooks/useValidation";
+import {
+  NAME_MAX_LENGTH,
+  NAME_MIN_LENGTH,
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+} from "../../utils/constants";
 
-const Register = () => {
+const Register = ({ onRegister, isLoggedIn }) => {
   // Валидация формы
   const { values, errors, isValid, handleChange, resetForms } =
     useValidation(".sign__form");
@@ -15,6 +21,19 @@ const Register = () => {
   useEffect(() => {
     resetForms();
   }, [resetForms]);
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    onRegister({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    });
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to='/movies' />;
+  }
 
   return (
     <SignForm title='Добро пожаловать!'>
@@ -28,8 +47,8 @@ const Register = () => {
           className='sign__form-input'
           type='text'
           required
-          minLength='2'
-          maxLength='30'
+          minLength={NAME_MIN_LENGTH}
+          maxLength={NAME_MAX_LENGTH}
           onChange={handleChange}
           value={values.name || ""}
         />
@@ -45,6 +64,7 @@ const Register = () => {
           required
           onChange={handleChange}
           value={values.email || ""}
+          pattern='^[^\s@]+@[^\s@]+\.[^\s@]+$'
         />
         <p className='sign__form-err-message'>{errors.email}</p>
         <label htmlFor='password' className='sign__form-label'>
@@ -56,8 +76,8 @@ const Register = () => {
           className='sign__form-input'
           type='password'
           required
-          minLength='6'
-          maxLength='30'
+          minLength={PASSWORD_MIN_LENGTH}
+          maxLength={PASSWORD_MAX_LENGTH}
           onChange={handleChange}
           value={values.password || ""}
         />
@@ -69,6 +89,7 @@ const Register = () => {
           type='submit'
           color={BUTTON_COLOR_CLASSES.white}
           isDisabled={!isValid}
+          onClick={handleSubmit}
         >
           Зарегистрироваться
         </Button>

@@ -4,10 +4,14 @@ import Button, {
   BUTTON_TYPE_CLASSES,
 } from "../Button/Button.component";
 import SignForm from "../SignForm/SignForm.component";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useValidation from "../../hooks/useValidation";
+import {
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+} from "../../utils/constants";
 
-const Login = () => {
+const Login = ({ onLogin, isLoggedIn }) => {
   // Валидация формы
   const { values, errors, isValid, handleChange, resetForms } =
     useValidation(".sign__form");
@@ -16,6 +20,15 @@ const Login = () => {
   useEffect(() => {
     resetForms();
   }, [resetForms]);
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    onLogin({ email: values.email, password: values.password });
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to='/movies' />;
+  }
 
   return (
     <SignForm title='Рады видеть!'>
@@ -31,6 +44,7 @@ const Login = () => {
           required
           onChange={handleChange}
           value={values.email || ""}
+          pattern='^[^\s@]+@[^\s@]+\.[^\s@]+$'
         />
         <p className='sign__form-err-message'>{errors.email}</p>
         <label htmlFor='password' className='sign__form-label'>
@@ -42,8 +56,8 @@ const Login = () => {
           className='sign__form-input'
           type='password'
           required
-          minLength='6'
-          maxLength='30'
+          minLength={PASSWORD_MIN_LENGTH}
+          maxLength={PASSWORD_MAX_LENGTH}
           onChange={handleChange}
           value={values.password || ""}
         />
@@ -55,6 +69,7 @@ const Login = () => {
           type='submit'
           color={BUTTON_COLOR_CLASSES.white}
           isDisabled={!isValid}
+          onClick={handleSubmit}
         >
           Войти
         </Button>

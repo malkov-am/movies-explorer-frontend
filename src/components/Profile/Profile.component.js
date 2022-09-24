@@ -1,23 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Profile.styles.scss";
 import Button, {
   BUTTON_COLOR_CLASSES,
   BUTTON_TYPE_CLASSES,
 } from "../Button/Button.component";
 import useValidation from "../../hooks/useValidation";
+import { UserContext } from "../../contexts/User.context";
+import { NAME_MAX_LENGTH, NAME_MIN_LENGTH } from "../../utils/constants";
 
-const Profile = () => {
+const Profile = ({ onLogout, onUpdateProfile }) => {
+  // Переменные состояния
+  const [isUserDataChanged, setUserDataChanged] = useState(false);
+  // Подписка на контекст
+  const { currentUser } = useContext(UserContext);
+  const { name, email } = currentUser;
+
   // Валидация формы
   const { values, errors, isValid, handleChange, resetForms } =
     useValidation(".profile__form");
-  // Сброс полей формы при открытии
+
+  // Изменились ли данные в форме
   useEffect(() => {
-    resetForms();
-  }, [resetForms]);
+    values.name === name && values.email === email
+      ? setUserDataChanged(false)
+      : setUserDataChanged(true);
+  }, [values]);
+
+  // Подстановка данных в форму
+  useEffect(() => {
+    currentUser && resetForms(currentUser, {}, true);
+  }, [currentUser, resetForms]);
+
+  // Обработчик обновления профиля
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    onUpdateProfile({ name: values.name, email: values.email });
+  };
 
   return (
     <div className='profile'>
-      <h2 className='profile__title'>Привет, Виталий!</h2>
+      <h2 className='profile__title'>Привет, {name}!</h2>
       <form className='profile__form' noValidate>
         <div className='profile__form-inputs'>
           <div className='profile__input-container'>
@@ -31,9 +53,8 @@ const Profile = () => {
                 className='profile__form-input'
                 type='text'
                 required
-                minLength='2'
-                maxLength='30'
-                placeholder='Виталий'
+                minLength={NAME_MIN_LENGTH}
+                maxLength={NAME_MAX_LENGTH}
                 onChange={handleChange}
                 value={values.name || ""}
               />
@@ -51,9 +72,9 @@ const Profile = () => {
                 className='profile__form-input'
                 type='email'
                 required
-                placeholder='pochta@yandex.ru'
                 onChange={handleChange}
                 value={values.email || ""}
+                pattern='^[^\s@]+@[^\s@]+\.[^\s@]+$'
               />
             </div>
             <p className='profile__form-err-message'>{errors.email}</p>
@@ -64,7 +85,8 @@ const Profile = () => {
             buttonType={BUTTON_TYPE_CLASSES.link}
             type='submit'
             color={BUTTON_COLOR_CLASSES.black}
-            isDisabled={!isValid}
+            isDisabled={!isUserDataChanged || !isValid}
+            onClick={handleSubmit}
           >
             Редактировать
           </Button>
@@ -72,6 +94,7 @@ const Profile = () => {
             buttonType={BUTTON_TYPE_CLASSES.link}
             type='button'
             color={BUTTON_COLOR_CLASSES.pink}
+            onClick={onLogout}
           >
             Выйти из аккаунта
           </Button>

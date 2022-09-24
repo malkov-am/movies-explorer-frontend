@@ -2,6 +2,10 @@
 
 Сервис "Movies Explorer" - интерактивная страница, на которой можно найти фильмы по запросу и сохранить в личном кабинете.
 
+[Ссылка на пулл-реквест](https://github.com/malkov-am/movies-explorer-frontend/pull/2)
+
+[Ссылка на проект](https://moviesexplorer.nomorepartiesxyz.ru)
+
 ## При создании сайта использовались следующие технологии:
 
 - React.js
